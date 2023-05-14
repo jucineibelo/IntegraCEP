@@ -1,0 +1,99 @@
+1) Criar banco de dados com estrutura do script abaixo (preferencialmente em PostgreSQL)
+
+CREATE TABLE pessoa (
+
+    idpessoa bigserial NOT NULL,
+
+    flnatureza int2 NOT NULL,
+
+    dsdocumento varchar(20) NOT NULL,
+
+    nmprimeiro varchar(100) NOT NULL,
+
+    nmsegundo varchar(100) NOT NULL,
+
+    dtregistro date NULL,
+
+    CONSTRAINT pessoa_pk PRIMARY KEY (idpessoa)
+
+);
+
+ 
+
+CREATE TABLE endereco (
+
+    idendereco bigserial NOT NULL,
+
+    idpessoa int8 NOT NULL,
+
+    dscep varchar(15) NULL,
+
+    CONSTRAINT endereco_pk PRIMARY KEY (idendereco),
+
+    CONSTRAINT endereco_fk_pessoa FOREIGN KEY (idpessoa) REFERENCES pessoa(idpessoa) ON DELETE cascade
+
+);
+
+CREATE INDEX endereco_idpessoa ON endereco (idpessoa);
+
+ 
+
+CREATE TABLE endereco_integracao (
+
+    idendereco bigint NOT null,
+
+    dsuf varchar(50) NULL,
+
+    nmcidade varchar(100) NULL,
+
+    nmbairro varchar(50) NULL,
+
+    nmlogradouro varchar(100) NULL,
+
+    dscomplemento varchar(100) NULL,
+
+    CONSTRAINT enderecointegracao_pk PRIMARY KEY (idendereco),
+
+    CONSTRAINT enderecointegracao_fk_endereco FOREIGN KEY (idendereco) REFERENCES endereco(idendereco) ON DELETE cascade
+
+);
+
+ 
+
+2) Definir arquitetura do sistema em três camadas
+
+Comunicação Rest com JSON entre aplicação Cliente / Servidor;
+Aplicar Clean Code;
+Orientação a objetos;
+Padrões de projeto;
+Garantir integridade entre registros (não ter pessoa sem endereço);
+Camada de persistência, utilizar Firedac.
+ 
+
+2.1)  Desenvolver um cadastro de pessoas
+ 
+
+Tabelas: Pessoa e Endereco
+Métodos:
+Insert
+Update
+Delete
+Insert em lote: lista de pessoas (considerando que essa lista poderá ter 50.000 registros. Adotar uma estratégia para que a inserção desses registros seja performática)
+ 
+
+2.2  Desenvolver rotina utilizando Threads
+
+Objetivo é atualizar os endereços das pessoas cadastradas
+Ler o campo CEP do cadastro das pessoas
+Fazer integração com a API via cep através da URL viacep.com.br/ws/_numero_CEP/json/
+Utilizar campo CEP da tabela endereco
+Atualizar os campos da tabela endereco_integracao com os dados do JSON de retorno
+Entrega da prova:
+
+1) Deve ser enviado para o e-mail: enock.junior@desbravador.com.br
+
+2) Contendo o seguinte assunto: Prova Delphi - Nome completo.  Exemplo: Prova Delphi - João Pereira Silva
+
+3) Anexar no e-mail todos os arquivos do projeto em formato: .zip.
+
+4) Ou compartilhar link com os Fontes do teste (Ex: Google-drive).

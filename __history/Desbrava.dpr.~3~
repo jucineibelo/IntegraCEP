@@ -1,0 +1,14 @@
+program Desbrava;
+
+uses
+  Vcl.Forms,
+  view.pessoa in 'src\views\view.pessoa.pas' {frmPessoa};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmPessoa, frmPessoa);
+  Application.Run;
+end.
