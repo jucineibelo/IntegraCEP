@@ -162,6 +162,7 @@ begin
         'Tente Novamente!');
     end;
   end;
+  desativarBotoesAll;
 
 end;
 

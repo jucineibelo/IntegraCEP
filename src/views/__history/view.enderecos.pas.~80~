@@ -39,17 +39,19 @@ type
     DBGrid1: TDBGrid;
     Panel3: TPanel;
     lblNome: TLabel;
-    Label2: TLabel;
-    DBEdit2: TDBEdit;
-    Label3: TLabel;
-    DBEdit3: TDBEdit;
-    Label4: TLabel;
-    DBEdit4: TDBEdit;
-    Label5: TLabel;
-    DBEdit5: TDBEdit;
-    Label6: TLabel;
-    DBEdit6: TDBEdit;
-    DBLookupComboBox1: TDBLookupComboBox;
+    lblUF: TLabel;
+    edtUF: TDBEdit;
+    lblCidade: TLabel;
+    edtCidade: TDBEdit;
+    lblBairro: TLabel;
+    edtBairro: TDBEdit;
+    lblLogradouro: TLabel;
+    edtLogradouro: TDBEdit;
+    lblComplemento: TLabel;
+    edtComplemento: TDBEdit;
+    lookupNomeIntegracao: TDBLookupComboBox;
+    edtCepIntegracao: TDBEdit;
+    btnPesquisaCep: TBitBtn;
     procedure btnNovoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -95,6 +97,10 @@ begin
   ativarBotoes;
   if DmCon.QryEndereco.State in dsEditModes then
     DmCon.QryEndereco.Cancel;
+
+  if DmCon.QryIntegracao.State in dsEditModes then
+    DmCon.QryIntegracao.Cancel;
+
   PageControl1.TabIndex := 2;
   btnSalvar.Visible := False;
 end;
@@ -143,8 +149,9 @@ procedure TfrmEndereco.btnSalvarClick(Sender: TObject);
 begin
   try
     DmCon.QryEndereco.Post;
+    DmCon.QryEndereco.Refresh;
     MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOK], 0);
-    PageControl1.TabIndex := 2;
+    PageControl1.TabIndex := 1;
     ativarBotoes;
     btnSalvar.Visible := False;
   except
@@ -209,7 +216,7 @@ begin
     desativarBotoesAll;
   if PageControl1.TabIndex = 2 then
     ativarBotoes;
-    btnSalvar.Visible := False;
+  btnSalvar.Visible := False;
 
 end;
 
