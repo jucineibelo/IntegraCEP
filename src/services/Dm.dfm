@@ -12,6 +12,7 @@ object DmCon: TDmCon
       'Password=masterkey'
       'Port=3050'
       'DriverID=FB')
+    Connected = True
     LoginPrompt = False
     Left = 40
     Top = 32
@@ -19,14 +20,14 @@ object DmCon: TDmCon
   object QryPessoas: TFDQuery
     Connection = FDConexao
     SQL.Strings = (
-      'select * from pessoa')
+      'select p.* from pessoa p ')
     Left = 40
     Top = 96
     object QryPessoasIDPESSOA: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'IDPESSOA'
       Origin = 'IDPESSOA'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object QryPessoasFLNATUREZA: TIntegerField
       FieldName = 'FLNATUREZA'
@@ -73,10 +74,10 @@ object DmCon: TDmCon
     Left = 40
     Top = 168
     object QryEnderecoIDENDERECO: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'IDENDERECO'
       Origin = 'IDENDERECO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object QryEnderecoIDPESSOA: TIntegerField
       FieldName = 'IDPESSOA'

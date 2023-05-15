@@ -385,6 +385,15 @@ object frmEndereco: TfrmEndereco
             TabOrder = 7
             OnClick = btnPesquisaCepClick
           end
+          object BitBtn1: TBitBtn
+            Left = 393
+            Top = 280
+            Width = 136
+            Height = 25
+            Caption = 'Salvar'
+            TabOrder = 8
+            OnClick = BitBtn1Click
+          end
         end
       end
       object TabSheet2: TTabSheet
@@ -444,6 +453,7 @@ object frmEndereco: TfrmEndereco
             item
               Expanded = False
               FieldName = 'DSCEP'
+              Width = 64
               Visible = True
             end
             item

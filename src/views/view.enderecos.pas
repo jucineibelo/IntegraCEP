@@ -52,6 +52,7 @@ type
     lookupNomeIntegracao: TDBLookupComboBox;
     edtCepIntegracao: TDBEdit;
     btnPesquisaCep: TBitBtn;
+    BitBtn1: TBitBtn;
     procedure btnNovoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -62,6 +63,7 @@ type
     procedure edtPesquisaKeyPress(Sender: TObject; var Key: Char);
     procedure PageControl1Change(Sender: TObject);
     procedure btnPesquisaCepClick(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
   private
 
     procedure pesquisarGrid;
@@ -94,6 +96,26 @@ begin
     if Components[i] is TSpeedButton then
       TSpeedButton(Components[i]).Visible := True;
   end;
+end;
+
+procedure TfrmEndereco.BitBtn1Click(Sender: TObject);
+begin    //Salvar tabela integração
+  try
+    DmCon.QryIntegracao.Post;
+    DmCon.QryIntegracao.Refresh;
+    MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOK], 0);
+    PageControl1.TabIndex := 1;
+    ativarBotoes;
+    btnSalvar.Visible := False;
+  except
+    on E: EDatabaseError do
+    begin
+      Application.Title := 'Atenção!';
+      ShowMessage('Algum campo obrigatório não foi preenchido.' + #13 +
+        'Tente Novamente!');
+    end;
+  end;
+
 end;
 
 procedure TfrmEndereco.btnCancelarClick(Sender: TObject);
@@ -149,7 +171,11 @@ begin          //Pesquisa na API
   DmIntegra.RESTClient1.BaseURL := 'https://viacep.com.br/ws/'+edtCepIntegracao.Text+'/json/';
   DmIntegra.RESTRequest1.Execute;
   ShowMessage(DmIntegra.RESTResponse1.Content);
-
+  edtCidade.Text := DmIntegra.FDMemTable1.FieldByName('localidade').AsString;
+  edtBairro.Text := DmIntegra.FDMemTable1.FieldByName('bairro').AsString;
+  edtLogradouro.Text := DmIntegra.FDMemTable1.FieldByName('logradouro').AsString;
+  edtComplemento.Text := DmIntegra.FDMemTable1.FieldByName('complemento').AsString;
+  edtUF.Text := DmIntegra.FDMemTable1.FieldByName('uf').AsString;
 end;
 
 procedure TfrmEndereco.btnPesquisaClick(Sender: TObject);
