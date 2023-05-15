@@ -14,12 +14,6 @@ type
   TDmCon = class(TDataModule)
     FDConexao: TFDConnection;
     QryPessoas: TFDQuery;
-    QryPessoasIDPESSOA: TIntegerField;
-    QryPessoasFLNATUREZA: TIntegerField;
-    QryPessoasDSDOCUMENTO: TStringField;
-    QryPessoasNMPRIMEIRO: TStringField;
-    QryPessoasNMSEGUNDO: TStringField;
-    QryPessoasDTREGISTRO: TDateField;
     dsPessoas: TDataSource;
     WaitCursor: TFDGUIxWaitCursor;
     QryEndereco: TFDQuery;
@@ -27,6 +21,21 @@ type
     QryEnderecoIDENDERECO: TIntegerField;
     QryEnderecoIDPESSOA: TIntegerField;
     QryEnderecoDSCEP: TStringField;
+    QryIntegracao: TFDQuery;
+    QryIntegracaoIDENDERECO: TIntegerField;
+    QryIntegracaoDSUF: TStringField;
+    QryIntegracaoNMCIDADE: TStringField;
+    QryIntegracaoNMBAIRRO: TStringField;
+    QryIntegracaoNMLOGRADOURO: TStringField;
+    QryIntegracaoDSCOMPLEMENTO: TStringField;
+    dsIntegracao: TDataSource;
+    QryPessoasIDPESSOA: TIntegerField;
+    QryPessoasFLNATUREZA: TIntegerField;
+    QryPessoasDSDOCUMENTO: TStringField;
+    QryPessoasNMPRIMEIRO: TStringField;
+    QryPessoasNMSEGUNDO: TStringField;
+    QryPessoasDTREGISTRO: TDateField;
+    QryEnderecoNMPRIMEIRO: TStringField;
     procedure DataModuleCreate(Sender: TObject);
   private
     function caminhDoConfigTxt: string;

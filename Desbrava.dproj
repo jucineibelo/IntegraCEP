@@ -71,6 +71,7 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <Icon_MainIcon>Desbrava_Icon1.ico</Icon_MainIcon>
         <DCC_ExeOutput>.\install</DCC_ExeOutput>
         <DCC_DcuOutput>.\dcus</DCC_DcuOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>

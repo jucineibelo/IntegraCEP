@@ -37,6 +37,21 @@ type
     lookupPessoa: TDBLookupComboBox;
     TabSheet3: TTabSheet;
     DBGrid1: TDBGrid;
+    Panel3: TPanel;
+    lblNome: TLabel;
+    lblUF: TLabel;
+    edtUF: TDBEdit;
+    lblCidade: TLabel;
+    edtCidade: TDBEdit;
+    lblBairro: TLabel;
+    edtBairro: TDBEdit;
+    lblLogradouro: TLabel;
+    edtLogradouro: TDBEdit;
+    lblComplemento: TLabel;
+    edtComplemento: TDBEdit;
+    lookupNomeIntegracao: TDBLookupComboBox;
+    edtCepIntegracao: TDBEdit;
+    btnPesquisaCep: TBitBtn;
     procedure btnNovoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -45,10 +60,12 @@ type
     procedure btnExcluirClick(Sender: TObject);
     procedure btnPesquisaClick(Sender: TObject);
     procedure edtPesquisaKeyPress(Sender: TObject; var Key: Char);
+    procedure PageControl1Change(Sender: TObject);
   private
 
     procedure pesquisarGrid;
     procedure desativarBotoes;
+    procedure desativarBotoesAll;
     procedure ativarBotoes;
 
   public
@@ -80,6 +97,10 @@ begin
   ativarBotoes;
   if DmCon.QryEndereco.State in dsEditModes then
     DmCon.QryEndereco.Cancel;
+
+  if DmCon.QryIntegracao.State in dsEditModes then
+    DmCon.QryIntegracao.Cancel;
+
   PageControl1.TabIndex := 2;
   btnSalvar.Visible := False;
 end;
@@ -103,7 +124,7 @@ begin
     'Atenção', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION);
   if aviso <> IDNO then
     DmCon.QryEndereco.Delete;
-  PageControl1.TabIndex := 1;
+  PageControl1.TabIndex := 2;
 end;
 
 procedure TfrmEndereco.btnNovoClick(Sender: TObject);
@@ -126,11 +147,21 @@ end;
 
 procedure TfrmEndereco.btnSalvarClick(Sender: TObject);
 begin
-  DmCon.QryEndereco.Post;
-  MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOK], 0);
-  PageControl1.TabIndex := 2;
-  ativarBotoes;
-  btnSalvar.Visible := False;
+  try
+    DmCon.QryEndereco.Post;
+    DmCon.QryEndereco.Refresh;
+    MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOK], 0);
+    PageControl1.TabIndex := 1;
+    ativarBotoes;
+    btnSalvar.Visible := False;
+  except
+    on E: EDatabaseError do
+    begin
+      Application.Title := 'Atenção!';
+      ShowMessage('Algum campo obrigatório não foi preenchido.' + #13 +
+        'Tente Novamente!');
+    end;
+  end;
 
 end;
 
@@ -144,6 +175,17 @@ begin
 
 end;
 
+procedure TfrmEndereco.desativarBotoesAll;
+var
+  i: integer;
+begin
+  for i := 0 to ComponentCount - 1 do
+  begin
+    if Components[i] is TSpeedButton then
+      TSpeedButton(Components[i]).Visible := False;
+  end;
+end;
+
 procedure TfrmEndereco.edtPesquisaKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
@@ -154,10 +196,28 @@ procedure TfrmEndereco.FormCreate(Sender: TObject);
 begin
   if not DmCon.QryEndereco.Active then
     DmCon.QryEndereco.Active := True;
+
   if not DmCon.QryPessoas.Active then
     DmCon.QryPessoas.Active := True;
+
+  if not DmCon.QryIntegracao.Active then
+    DmCon.QryIntegracao.Active := True;
   PageControl1.TabIndex := 0;
   btnSalvar.Visible := False;
+end;
+
+procedure TfrmEndereco.PageControl1Change(Sender: TObject);
+var
+  i: integer;
+begin
+  if PageControl1.TabIndex = 0 then
+    ativarBotoes;
+  if PageControl1.TabIndex = 1 then
+    desativarBotoesAll;
+  if PageControl1.TabIndex = 2 then
+    ativarBotoes;
+  btnSalvar.Visible := False;
+
 end;
 
 procedure TfrmEndereco.pesquisarGrid;

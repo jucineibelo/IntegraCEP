@@ -160,9 +160,10 @@ object frmEndereco: TfrmEndereco
       Top = 0
       Width = 683
       Height = 402
-      ActivePage = TabSheet3
+      ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
+      OnChange = PageControl1Change
       object TabSheet1: TTabSheet
         Caption = 'Cadastro'
         object Panel2: TPanel
@@ -252,6 +253,138 @@ object frmEndereco: TfrmEndereco
       object TabSheet3: TTabSheet
         Caption = 'CEP'
         ImageIndex = 2
+        object Panel3: TPanel
+          Left = 0
+          Top = 0
+          Width = 675
+          Height = 374
+          Align = alClient
+          BevelOuter = bvNone
+          Color = 16770250
+          ParentBackground = False
+          TabOrder = 0
+          object lblNome: TLabel
+            Left = 48
+            Top = 48
+            Width = 31
+            Height = 13
+            Caption = 'Nome:'
+          end
+          object lblUF: TLabel
+            Left = 393
+            Top = 220
+            Width = 17
+            Height = 13
+            Caption = 'UF:'
+            FocusControl = edtUF
+          end
+          object lblCidade: TLabel
+            Left = 393
+            Top = 52
+            Width = 37
+            Height = 13
+            Caption = 'Cidade:'
+            FocusControl = edtCidade
+          end
+          object lblBairro: TLabel
+            Left = 393
+            Top = 94
+            Width = 32
+            Height = 13
+            Caption = 'Bairro:'
+            FocusControl = edtBairro
+          end
+          object lblLogradouro: TLabel
+            Left = 393
+            Top = 136
+            Width = 59
+            Height = 13
+            Caption = 'Logradouro:'
+            FocusControl = edtLogradouro
+          end
+          object lblComplemento: TLabel
+            Left = 393
+            Top = 178
+            Width = 69
+            Height = 13
+            Caption = 'Complemento:'
+            FocusControl = edtComplemento
+          end
+          object edtUF: TDBEdit
+            Left = 393
+            Top = 235
+            Width = 80
+            Height = 21
+            DataField = 'DSUF'
+            DataSource = DmCon.dsIntegracao
+            TabOrder = 6
+          end
+          object edtCidade: TDBEdit
+            Left = 393
+            Top = 67
+            Width = 200
+            Height = 21
+            DataField = 'NMCIDADE'
+            DataSource = DmCon.dsIntegracao
+            TabOrder = 1
+          end
+          object edtBairro: TDBEdit
+            Left = 393
+            Top = 109
+            Width = 200
+            Height = 21
+            DataField = 'NMBAIRRO'
+            DataSource = DmCon.dsIntegracao
+            TabOrder = 2
+          end
+          object edtLogradouro: TDBEdit
+            Left = 393
+            Top = 151
+            Width = 256
+            Height = 21
+            DataField = 'NMLOGRADOURO'
+            DataSource = DmCon.dsIntegracao
+            TabOrder = 3
+          end
+          object edtComplemento: TDBEdit
+            Left = 393
+            Top = 193
+            Width = 256
+            Height = 21
+            DataField = 'DSCOMPLEMENTO'
+            DataSource = DmCon.dsIntegracao
+            TabOrder = 4
+          end
+          object lookupNomeIntegracao: TDBLookupComboBox
+            Left = 48
+            Top = 67
+            Width = 219
+            Height = 21
+            DataField = 'IDENDERECO'
+            DataSource = DmCon.dsIntegracao
+            KeyField = 'IDENDERECO'
+            ListField = 'NMPRIMEIRO'
+            ListSource = DmCon.dsEndereco
+            TabOrder = 5
+          end
+          object edtCepIntegracao: TDBEdit
+            Left = 48
+            Top = 109
+            Width = 113
+            Height = 21
+            DataField = 'DSCEP'
+            DataSource = DmCon.dsEndereco
+            TabOrder = 0
+          end
+          object btnPesquisaCep: TBitBtn
+            Left = 176
+            Top = 107
+            Width = 91
+            Height = 25
+            Caption = 'Pesquisar'
+            TabOrder = 7
+          end
+        end
       end
       object TabSheet2: TTabSheet
         Caption = 'Consulta'
@@ -310,6 +443,13 @@ object frmEndereco: TfrmEndereco
             item
               Expanded = False
               FieldName = 'DSCEP'
+              Width = 64
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'NMPRIMEIRO'
+              Width = 200
               Visible = True
             end>
         end

@@ -6,8 +6,8 @@ object DmCon: TDmCon
   object FDConexao: TFDConnection
     Params.Strings = (
       
-        'Database=C:\Users\User-J\Desktop\DESBRAVADOR\Banco de Dados\DADO' +
-        'S.FDB'
+        'Database=C:\Users\User-J\Desktop\Projetos\Projetos Delphi\DESBRA' +
+        'VADOR\Banco de Dados\DADOS.FDB'
       'User_Name=sysdba'
       'Password=masterkey'
       'Port=3050'
@@ -54,7 +54,6 @@ object DmCon: TDmCon
     object QryPessoasDTREGISTRO: TDateField
       FieldName = 'DTREGISTRO'
       Origin = 'DTREGISTRO'
-      EditMask = '!99/99/0000;1;_'
     end
   end
   object dsPessoas: TDataSource
@@ -70,9 +69,10 @@ object DmCon: TDmCon
   object QryEndereco: TFDQuery
     Connection = FDConexao
     SQL.Strings = (
-      'select * from endereco')
-    Left = 32
-    Top = 176
+      'select e.*, p.nmprimeiro from endereco e'
+      'left join pessoa p on (e.idpessoa = p.idpessoa)')
+    Left = 40
+    Top = 168
     object QryEnderecoIDENDERECO: TIntegerField
       FieldName = 'IDENDERECO'
       Origin = 'IDENDERECO'
@@ -89,10 +89,61 @@ object DmCon: TDmCon
       Origin = 'DSCEP'
       Size = 15
     end
+    object QryEnderecoNMPRIMEIRO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NMPRIMEIRO'
+      Origin = 'NMPRIMEIRO'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 100
+    end
   end
   object dsEndereco: TDataSource
     DataSet = QryEndereco
     Left = 136
-    Top = 176
+    Top = 168
+  end
+  object QryIntegracao: TFDQuery
+    Connection = FDConexao
+    SQL.Strings = (
+      'select * from endereco_integracao')
+    Left = 40
+    Top = 240
+    object QryIntegracaoIDENDERECO: TIntegerField
+      FieldName = 'IDENDERECO'
+      Origin = 'IDENDERECO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object QryIntegracaoDSUF: TStringField
+      FieldName = 'DSUF'
+      Origin = 'DSUF'
+      Size = 50
+    end
+    object QryIntegracaoNMCIDADE: TStringField
+      FieldName = 'NMCIDADE'
+      Origin = 'NMCIDADE'
+      Size = 100
+    end
+    object QryIntegracaoNMBAIRRO: TStringField
+      FieldName = 'NMBAIRRO'
+      Origin = 'NMBAIRRO'
+      Size = 50
+    end
+    object QryIntegracaoNMLOGRADOURO: TStringField
+      FieldName = 'NMLOGRADOURO'
+      Origin = 'NMLOGRADOURO'
+      Size = 100
+    end
+    object QryIntegracaoDSCOMPLEMENTO: TStringField
+      FieldName = 'DSCOMPLEMENTO'
+      Origin = 'DSCOMPLEMENTO'
+      Size = 100
+    end
+  end
+  object dsIntegracao: TDataSource
+    DataSet = QryIntegracao
+    Left = 136
+    Top = 240
   end
 end
