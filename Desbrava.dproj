@@ -105,6 +105,11 @@
             <Form>frmEndereco</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\services\dm.integra.pas">
+            <Form>DmIntegra</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

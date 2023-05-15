@@ -7,7 +7,8 @@ uses
   view.principal in 'src\views\view.principal.pas' {frmPrincipal},
   view.enderecos in 'src\views\view.enderecos.pas' {frmEndereco},
   Vcl.Themes,
-  Vcl.Styles;
+  Vcl.Styles,
+  dm.integra in 'src\services\dm.integra.pas' {DmIntegra: TDataModule};
 
 {$R *.res}
 
@@ -16,5 +17,6 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TDmCon, DmCon);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TDmIntegra, DmIntegra);
   Application.Run;
 end.

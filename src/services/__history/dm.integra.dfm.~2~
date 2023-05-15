@@ -1,0 +1,5 @@
+object DmIntegra: TDmIntegra
+  OldCreateOrder = False
+  Height = 397
+  Width = 377
+end

@@ -10,7 +10,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  FireDAC.UI.Intf, FireDAC.VCLUI.Wait, FireDAC.Comp.UI;
+  FireDAC.UI.Intf, FireDAC.VCLUI.Wait, FireDAC.Comp.UI, REST.Client;
 
 type
   TfrmEndereco = class(TForm)
@@ -61,6 +61,7 @@ type
     procedure btnPesquisaClick(Sender: TObject);
     procedure edtPesquisaKeyPress(Sender: TObject; var Key: Char);
     procedure PageControl1Change(Sender: TObject);
+    procedure btnPesquisaCepClick(Sender: TObject);
   private
 
     procedure pesquisarGrid;
@@ -76,6 +77,9 @@ var
   frmEndereco: TfrmEndereco;
 
 implementation
+
+uses
+  dm.integra;
 
 {$R *.dfm}
 { TfrmEndereco }
@@ -138,6 +142,14 @@ begin
   DmCon.QryEndereco.Append;
   DmCon.QryEnderecoIDENDERECO.AsInteger := regist;
   edtCep.SetFocus;
+end;
+
+procedure TfrmEndereco.btnPesquisaCepClick(Sender: TObject);
+begin          //Pesquisa na API
+  DmIntegra.RESTClient1.BaseURL := 'https://viacep.com.br/ws/'+edtCepIntegracao.Text+'/json/';
+  DmIntegra.RESTRequest1.Execute;
+  ShowMessage(DmIntegra.RESTResponse1.Content);
+
 end;
 
 procedure TfrmEndereco.btnPesquisaClick(Sender: TObject);

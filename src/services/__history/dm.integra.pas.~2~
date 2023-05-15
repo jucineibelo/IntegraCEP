@@ -1,0 +1,25 @@
+unit dm.integra;
+
+interface
+
+uses
+  System.SysUtils, System.Classes;
+
+type
+  TDmIntegra = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DmIntegra: TDmIntegra;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

@@ -160,7 +160,7 @@ object frmEndereco: TfrmEndereco
       Top = 0
       Width = 683
       Height = 402
-      ActivePage = TabSheet1
+      ActivePage = TabSheet3
       Align = alClient
       TabOrder = 0
       OnChange = PageControl1Change
@@ -383,6 +383,7 @@ object frmEndereco: TfrmEndereco
             Height = 25
             Caption = 'Pesquisar'
             TabOrder = 7
+            OnClick = btnPesquisaCepClick
           end
         end
       end
@@ -443,7 +444,6 @@ object frmEndereco: TfrmEndereco
             item
               Expanded = False
               FieldName = 'DSCEP'
-              Width = 64
               Visible = True
             end
             item
