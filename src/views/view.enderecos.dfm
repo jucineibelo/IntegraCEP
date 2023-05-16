@@ -425,7 +425,7 @@ object frmEndereco: TfrmEndereco
           end
           object BitBtn1: TBitBtn
             Left = 455
-            Top = 209
+            Top = 204
             Width = 91
             Height = 25
             Caption = 'Salvar'
@@ -475,8 +475,8 @@ object frmEndereco: TfrmEndereco
               end>
           end
           object Novo: TBitBtn
-            Left = 104
-            Top = 209
+            Left = 99
+            Top = 204
             Width = 91
             Height = 25
             Caption = 'Novo'
@@ -485,7 +485,7 @@ object frmEndereco: TfrmEndereco
           end
           object BitBtn2: TBitBtn
             Left = 216
-            Top = 209
+            Top = 204
             Width = 91
             Height = 25
             Caption = 'Editar'
@@ -494,7 +494,7 @@ object frmEndereco: TfrmEndereco
           end
           object BitBtn3: TBitBtn
             Left = 337
-            Top = 209
+            Top = 204
             Width = 91
             Height = 25
             Caption = 'Cancelar'
@@ -503,7 +503,7 @@ object frmEndereco: TfrmEndereco
           end
           object BitBtn4: TBitBtn
             Left = 572
-            Top = 209
+            Top = 204
             Width = 91
             Height = 25
             Caption = 'Excluir'
