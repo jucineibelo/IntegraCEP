@@ -81,7 +81,7 @@ var
 implementation
 
 uses
-  dm.integra;
+  Dm.integra;
 
 {$R *.dfm}
 { TfrmEndereco }
@@ -99,7 +99,7 @@ begin
 end;
 
 procedure TfrmEndereco.BitBtn1Click(Sender: TObject);
-begin    //Salvar tabela integração
+begin // Salvar tabela integração
   try
     DmCon.QryIntegracao.Post;
     DmCon.QryIntegracao.Refresh;
@@ -167,11 +167,23 @@ begin
 end;
 
 procedure TfrmEndereco.btnPesquisaCepClick(Sender: TObject);
-begin          //Pesquisa na API
-  DmIntegra.RESTClient1.BaseURL := 'https://viacep.com.br/ws/'+edtCepIntegracao.Text+'/json/';
-  DmIntegra.RESTRequest1.Execute;
-  ShowMessage(DmIntegra.RESTResponse1.Content);
+begin // Pesquisa na API
+  if Length(edtCepIntegracao.Text) <> 8 then
+  begin
+    ShowMessage('CEP Inválido, corrija e tente novamente!');
+    Close;
+  end;
 
+  DmIntegra.RESTClient1.BaseURL := 'http://viacep.com.br/ws/' + edtCepIntegracao.Text + '/json/';
+  DmIntegra.RESTRequest1.Execute;
+  // ShowMessage(DmIntegra.RESTResponse1.Content);   <- teste para ver se retornava
+  edtCidade.Text := DmIntegra.FDMemTable1.FieldByName('localidade').AsString;
+  edtBairro.Text := DmIntegra.FDMemTable1.FieldByName('bairro').AsString;
+  edtLogradouro.Text := DmIntegra.FDMemTable1.FieldByName('logradouro')
+    .AsString;
+  edtComplemento.Text := DmIntegra.FDMemTable1.FieldByName
+    ('complemento').AsString;
+  edtUF.Text := DmIntegra.FDMemTable1.FieldByName('uf').AsString;
 end;
 
 procedure TfrmEndereco.btnPesquisaClick(Sender: TObject);

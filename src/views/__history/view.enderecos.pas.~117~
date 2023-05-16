@@ -53,6 +53,8 @@ type
     edtCepIntegracao: TDBEdit;
     btnPesquisaCep: TBitBtn;
     BitBtn1: TBitBtn;
+    DBNavigator1: TDBNavigator;
+    DBNavigator2: TDBNavigator;
     procedure btnNovoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -64,6 +66,7 @@ type
     procedure PageControl1Change(Sender: TObject);
     procedure btnPesquisaCepClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
+    procedure edtCepKeyPress(Sender: TObject; var Key: Char);
   private
 
     procedure pesquisarGrid;
@@ -81,7 +84,7 @@ var
 implementation
 
 uses
-  dm.integra;
+  Dm.integra;
 
 {$R *.dfm}
 { TfrmEndereco }
@@ -99,7 +102,7 @@ begin
 end;
 
 procedure TfrmEndereco.BitBtn1Click(Sender: TObject);
-begin    //Salvar tabela integração
+begin // Salvar tabela integração
   try
     DmCon.QryIntegracao.Post;
     DmCon.QryIntegracao.Refresh;
@@ -107,6 +110,7 @@ begin    //Salvar tabela integração
     PageControl1.TabIndex := 1;
     ativarBotoes;
     btnSalvar.Visible := False;
+    PageControl1.TabIndex := 2;
   except
     on E: EDatabaseError do
     begin
@@ -115,7 +119,6 @@ begin    //Salvar tabela integração
         'Tente Novamente!');
     end;
   end;
-
 end;
 
 procedure TfrmEndereco.btnCancelarClick(Sender: TObject);
@@ -167,15 +170,22 @@ begin
 end;
 
 procedure TfrmEndereco.btnPesquisaCepClick(Sender: TObject);
-begin          //Pesquisa na API
-  DmIntegra.RESTClient1.BaseURL := 'https://viacep.com.br/ws/'+edtCepIntegracao.Text+'/json/';
-  DmIntegra.RESTRequest1.Execute;
-  //ShowMessage(DmIntegra.RESTResponse1.Content);
-  edtCidade.Text := DmIntegra.FDMemTable1.FieldByName('localidade').AsString;
-  edtBairro.Text := DmIntegra.FDMemTable1.FieldByName('bairro').AsString;
-  edtLogradouro.Text := DmIntegra.FDMemTable1.FieldByName('logradouro').AsString;
-  edtComplemento.Text := DmIntegra.FDMemTable1.FieldByName('complemento').AsString;
-  edtUF.Text := DmIntegra.FDMemTable1.FieldByName('uf').AsString;
+begin // Pesquisa na API
+  if Length(edtCepIntegracao.Text) <> 8 then
+  begin
+    ShowMessage('CEP Inválido, corrija e tente novamente!');
+    Close;
+  end;
+
+  if Length(edtCepIntegracao.Text) = 8 then
+    DmIntegra.RESTClient1.BaseURL := 'http://viacep.com.br/ws/' + edtCepIntegracao.Text + '/json/';
+    DmIntegra.RESTRequest1.Execute;
+    // ShowMessage(DmIntegra.RESTResponse1.Content);   <- teste para ver se retornava
+    edtCidade.Text := DmIntegra.FDMemTable1.FieldByName('localidade').AsString;
+    edtBairro.Text := DmIntegra.FDMemTable1.FieldByName('bairro').AsString;
+    edtLogradouro.Text := DmIntegra.FDMemTable1.FieldByName('logradouro').AsString;
+    edtComplemento.Text := DmIntegra.FDMemTable1.FieldByName('complemento').AsString;
+    edtUF.Text := DmIntegra.FDMemTable1.FieldByName('uf').AsString;
 end;
 
 procedure TfrmEndereco.btnPesquisaClick(Sender: TObject);
@@ -223,6 +233,12 @@ begin
     if Components[i] is TSpeedButton then
       TSpeedButton(Components[i]).Visible := False;
   end;
+end;
+
+procedure TfrmEndereco.edtCepKeyPress(Sender: TObject; var Key: Char);
+begin
+  if not (Key in ['0'..'9', #8, #13, #27]) then
+    Key := #0; //
 end;
 
 procedure TfrmEndereco.edtPesquisaKeyPress(Sender: TObject; var Key: Char);

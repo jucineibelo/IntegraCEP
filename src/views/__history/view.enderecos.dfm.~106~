@@ -166,7 +166,6 @@ object frmEndereco: TfrmEndereco
       OnChange = PageControl1Change
       object TabSheet1: TTabSheet
         Caption = 'Cadastro'
-        OnShow = TabSheet1Show
         object Panel2: TPanel
           Left = 0
           Top = 0
@@ -177,6 +176,8 @@ object frmEndereco: TfrmEndereco
           Color = 16770250
           ParentBackground = False
           TabOrder = 0
+          ExplicitLeft = 32
+          ExplicitTop = 1
           object lblCadPessoa: TLabel
             Left = 230
             Top = 29
@@ -191,30 +192,30 @@ object frmEndereco: TfrmEndereco
             ParentFont = False
           end
           object lblCod: TLabel
-            Left = 125
-            Top = 131
+            Left = 173
+            Top = 135
             Width = 37
             Height = 13
             Caption = 'C'#243'digo:'
           end
           object lblPessoa: TLabel
-            Left = 241
+            Left = 337
             Top = 131
             Width = 38
             Height = 13
             Caption = 'Pessoa:'
           end
           object lblCep: TLabel
-            Left = 433
-            Top = 131
+            Left = 337
+            Top = 187
             Width = 23
             Height = 13
             Caption = 'CEP:'
             FocusControl = edtCep
           end
           object DBTextCod: TDBText
-            Left = 125
-            Top = 153
+            Left = 173
+            Top = 154
             Width = 65
             Height = 17
             DataField = 'IDENDERECO'
@@ -227,8 +228,8 @@ object frmEndereco: TfrmEndereco
             ParentFont = False
           end
           object edtCep: TDBEdit
-            Left = 433
-            Top = 150
+            Left = 337
+            Top = 206
             Width = 129
             Height = 21
             DataField = 'DSCEP'
@@ -236,7 +237,7 @@ object frmEndereco: TfrmEndereco
             TabOrder = 0
           end
           object lookupPessoa: TDBLookupComboBox
-            Left = 241
+            Left = 337
             Top = 150
             Width = 149
             Height = 21
@@ -248,6 +249,24 @@ object frmEndereco: TfrmEndereco
             ListField = 'NMPRIMEIRO'
             ListSource = DmCon.dsPessoas
             TabOrder = 1
+          end
+          object DBNavigator1: TDBNavigator
+            Left = 108
+            Top = 150
+            Width = 50
+            Height = 21
+            DataSource = DmCon.dsEndereco
+            VisibleButtons = [nbPrior]
+            TabOrder = 2
+          end
+          object DBNavigator2: TDBNavigator
+            Left = 244
+            Top = 150
+            Width = 50
+            Height = 21
+            DataSource = DmCon.dsEndereco
+            VisibleButtons = [nbNext]
+            TabOrder = 3
           end
         end
       end
@@ -384,6 +403,16 @@ object frmEndereco: TfrmEndereco
             Height = 25
             Caption = 'Pesquisar'
             TabOrder = 7
+            OnClick = btnPesquisaCepClick
+          end
+          object BitBtn1: TBitBtn
+            Left = 393
+            Top = 280
+            Width = 136
+            Height = 25
+            Caption = 'Salvar'
+            TabOrder = 8
+            OnClick = BitBtn1Click
           end
         end
       end
@@ -423,7 +452,7 @@ object frmEndereco: TfrmEndereco
           Width = 675
           Height = 331
           Align = alClient
-          DataSource = DmCon.dsEndereco
+          DataSource = DmCon.dsIntegracao
           TabOrder = 1
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -434,23 +463,43 @@ object frmEndereco: TfrmEndereco
             item
               Expanded = False
               FieldName = 'IDENDERECO'
+              Title.Caption = 'C'#243'digo'
+              Width = 50
               Visible = True
             end
             item
               Expanded = False
-              FieldName = 'IDPESSOA'
+              FieldName = 'NMBAIRRO'
+              Title.Caption = 'Bairro'
+              Width = 100
               Visible = True
             end
             item
               Expanded = False
-              FieldName = 'DSCEP'
-              Width = 64
+              FieldName = 'NMCIDADE'
+              Title.Caption = 'Cidade'
+              Width = 150
               Visible = True
             end
             item
               Expanded = False
-              FieldName = 'NMPRIMEIRO'
-              Width = 200
+              FieldName = 'DSUF'
+              Title.Caption = 'UF'
+              Width = 50
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'NMLOGRADOURO'
+              Title.Caption = 'Logradouro'
+              Width = 100
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'DSCOMPLEMENTO'
+              Title.Caption = 'Complemento'
+              Width = 100
               Visible = True
             end>
         end
