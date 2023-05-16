@@ -1,0 +1,492 @@
+object frmEndereco: TfrmEndereco
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Endere'#231'o'
+  ClientHeight = 453
+  ClientWidth = 683
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlFundo: TPanel
+    Left = 0
+    Top = 0
+    Width = 683
+    Height = 453
+    Align = alClient
+    BevelOuter = bvNone
+    Color = 16770250
+    ParentBackground = False
+    TabOrder = 0
+    object pnlBotoesButton: TPanel
+      Left = 0
+      Top = 402
+      Width = 683
+      Height = 51
+      Align = alBottom
+      BevelOuter = bvNone
+      Color = 10975773
+      ParentBackground = False
+      TabOrder = 1
+      object btnNovo: TSpeedButton
+        AlignWithMargins = True
+        Left = 245
+        Top = 3
+        Width = 77
+        Height = 45
+        Cursor = crHandPoint
+        Align = alRight
+        AllowAllUp = True
+        GroupIndex = 1
+        Caption = '[ NOVO ]'
+        Flat = True
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        OnClick = btnNovoClick
+        ExplicitLeft = 228
+        ExplicitTop = 0
+        ExplicitHeight = 34
+      end
+      object btnEditar: TSpeedButton
+        AlignWithMargins = True
+        Left = 328
+        Top = 3
+        Width = 77
+        Height = 45
+        Cursor = crHandPoint
+        Align = alRight
+        AllowAllUp = True
+        GroupIndex = 1
+        Caption = '[ EDITAR ]'
+        Flat = True
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        OnClick = btnEditarClick
+        ExplicitLeft = 215
+        ExplicitTop = 0
+        ExplicitHeight = 34
+      end
+      object btnCancelar: TSpeedButton
+        AlignWithMargins = True
+        Left = 411
+        Top = 3
+        Width = 103
+        Height = 45
+        Cursor = crHandPoint
+        Align = alRight
+        AllowAllUp = True
+        GroupIndex = 1
+        Caption = '[ CANCELAR ]'
+        Flat = True
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Pitch = fpFixed
+        Font.Style = [fsBold]
+        Font.Quality = fqProof
+        ParentFont = False
+        OnClick = btnCancelarClick
+        ExplicitLeft = 298
+        ExplicitTop = 0
+        ExplicitHeight = 34
+      end
+      object btnSalvar: TSpeedButton
+        AlignWithMargins = True
+        Left = 520
+        Top = 3
+        Width = 77
+        Height = 45
+        Cursor = crHandPoint
+        Align = alRight
+        AllowAllUp = True
+        GroupIndex = 1
+        Caption = '[ SALVAR ]'
+        Flat = True
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        OnClick = btnSalvarClick
+        ExplicitLeft = 490
+        ExplicitTop = 0
+        ExplicitHeight = 34
+      end
+      object btnExcluir: TSpeedButton
+        AlignWithMargins = True
+        Left = 603
+        Top = 3
+        Width = 77
+        Height = 45
+        Cursor = crHandPoint
+        Align = alRight
+        AllowAllUp = True
+        GroupIndex = 1
+        Caption = '[ EXCLUIR ]'
+        Flat = True
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        OnClick = btnExcluirClick
+        ExplicitLeft = 490
+        ExplicitTop = 0
+        ExplicitHeight = 34
+      end
+      object DBNavigator1: TDBNavigator
+        Left = 4
+        Top = 3
+        Width = 672
+        Height = 43
+        DataSource = DmCon.dsIntegracao
+        VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
+        TabOrder = 0
+      end
+    end
+    object PageControl1: TPageControl
+      Left = 0
+      Top = 0
+      Width = 683
+      Height = 402
+      ActivePage = TabSheet3
+      Align = alClient
+      TabOrder = 0
+      OnChange = PageControl1Change
+      object TabSheet1: TTabSheet
+        Caption = 'Cadastro'
+        object Panel2: TPanel
+          Left = 0
+          Top = 0
+          Width = 675
+          Height = 374
+          Align = alClient
+          BevelOuter = bvNone
+          Color = 16770250
+          ParentBackground = False
+          TabOrder = 0
+          ExplicitLeft = 32
+          ExplicitTop = 1
+          object lblCadPessoa: TLabel
+            Left = 230
+            Top = 29
+            Width = 206
+            Height = 21
+            Caption = 'CADASTRO DE ENDERE'#199'OS'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object lblCod: TLabel
+            Left = 117
+            Top = 95
+            Width = 37
+            Height = 13
+            Caption = 'C'#243'digo:'
+          end
+          object lblPessoa: TLabel
+            Left = 217
+            Top = 91
+            Width = 38
+            Height = 13
+            Caption = 'Pessoa:'
+          end
+          object lblCep: TLabel
+            Left = 417
+            Top = 92
+            Width = 23
+            Height = 13
+            Caption = 'CEP:'
+            FocusControl = edtCep
+          end
+          object DBTextCod: TDBText
+            Left = 117
+            Top = 114
+            Width = 37
+            Height = 17
+            DataField = 'IDENDERECO'
+            DataSource = DmCon.dsEndereco
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object edtCep: TDBEdit
+            Left = 417
+            Top = 111
+            Width = 129
+            Height = 21
+            DataField = 'DSCEP'
+            DataSource = DmCon.dsEndereco
+            MaxLength = 8
+            TabOrder = 0
+            OnKeyPress = edtCepKeyPress
+          end
+          object lookupPessoa: TDBLookupComboBox
+            Left = 217
+            Top = 110
+            Width = 149
+            Height = 21
+            BevelInner = bvNone
+            BevelOuter = bvNone
+            DataField = 'IDPESSOA'
+            DataSource = DmCon.dsEndereco
+            KeyField = 'IDPESSOA'
+            ListField = 'NMPRIMEIRO'
+            ListSource = DmCon.dsPessoas
+            TabOrder = 1
+          end
+          object DBGrid1: TDBGrid
+            Left = -2
+            Top = 192
+            Width = 675
+            Height = 183
+            DataSource = DmCon.dsEndereco
+            ReadOnly = True
+            TabOrder = 2
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'IDENDERECO'
+                Title.Caption = 'C'#243'digo'
+                Width = 50
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'NMPRIMEIRO'
+                Title.Caption = 'Pessoa'
+                Width = 230
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'DSCEP'
+                Title.Caption = 'CEP'
+                Width = 200
+                Visible = True
+              end>
+          end
+        end
+      end
+      object TabSheet3: TTabSheet
+        Caption = 'CEP'
+        ImageIndex = 2
+        object Panel3: TPanel
+          Left = 0
+          Top = 0
+          Width = 675
+          Height = 374
+          Align = alClient
+          BevelOuter = bvNone
+          Color = 16770250
+          ParentBackground = False
+          TabOrder = 0
+          object lblNome: TLabel
+            Left = 16
+            Top = 12
+            Width = 31
+            Height = 13
+            Caption = 'Nome:'
+          end
+          object lblUF: TLabel
+            Left = 407
+            Top = 180
+            Width = 17
+            Height = 13
+            Caption = 'UF:'
+            FocusControl = edtUF
+          end
+          object lblCidade: TLabel
+            Left = 407
+            Top = 12
+            Width = 37
+            Height = 13
+            Caption = 'Cidade:'
+            FocusControl = edtCidade
+          end
+          object lblBairro: TLabel
+            Left = 407
+            Top = 54
+            Width = 32
+            Height = 13
+            Caption = 'Bairro:'
+            FocusControl = edtBairro
+          end
+          object lblLogradouro: TLabel
+            Left = 407
+            Top = 96
+            Width = 59
+            Height = 13
+            Caption = 'Logradouro:'
+            FocusControl = edtLogradouro
+          end
+          object lblComplemento: TLabel
+            Left = 407
+            Top = 138
+            Width = 69
+            Height = 13
+            Caption = 'Complemento:'
+            FocusControl = edtComplemento
+          end
+          object edtUF: TDBEdit
+            Left = 407
+            Top = 195
+            Width = 80
+            Height = 21
+            DataField = 'DSUF'
+            DataSource = DmCon.dsIntegracao
+            TabOrder = 6
+          end
+          object edtCidade: TDBEdit
+            Left = 407
+            Top = 27
+            Width = 200
+            Height = 21
+            DataField = 'NMCIDADE'
+            DataSource = DmCon.dsIntegracao
+            TabOrder = 1
+          end
+          object edtBairro: TDBEdit
+            Left = 407
+            Top = 69
+            Width = 200
+            Height = 21
+            DataField = 'NMBAIRRO'
+            DataSource = DmCon.dsIntegracao
+            TabOrder = 2
+          end
+          object edtLogradouro: TDBEdit
+            Left = 407
+            Top = 111
+            Width = 256
+            Height = 21
+            DataField = 'NMLOGRADOURO'
+            DataSource = DmCon.dsIntegracao
+            TabOrder = 3
+          end
+          object edtComplemento: TDBEdit
+            Left = 407
+            Top = 153
+            Width = 256
+            Height = 21
+            DataField = 'DSCOMPLEMENTO'
+            DataSource = DmCon.dsIntegracao
+            TabOrder = 4
+          end
+          object lookupNomeIntegracao: TDBLookupComboBox
+            Left = 16
+            Top = 27
+            Width = 219
+            Height = 21
+            DataField = 'IDENDERECO'
+            DataSource = DmCon.dsIntegracao
+            KeyField = 'IDENDERECO'
+            ListField = 'NMPRIMEIRO'
+            ListSource = DmCon.dsEndereco
+            TabOrder = 5
+          end
+          object edtCepIntegracao: TDBEdit
+            Left = 16
+            Top = 69
+            Width = 113
+            Height = 21
+            DataField = 'DSCEP'
+            DataSource = DmCon.dsEndereco
+            TabOrder = 0
+          end
+          object btnPesquisaCep: TBitBtn
+            Left = 144
+            Top = 67
+            Width = 91
+            Height = 25
+            Caption = 'Pesquisar'
+            TabOrder = 7
+            OnClick = btnPesquisaCepClick
+          end
+          object BitBtn1: TBitBtn
+            Left = 516
+            Top = 191
+            Width = 136
+            Height = 25
+            Caption = 'Salvar'
+            TabOrder = 8
+            OnClick = BitBtn1Click
+          end
+          object DBGrid2: TDBGrid
+            Left = 0
+            Top = 240
+            Width = 673
+            Height = 135
+            DataSource = DmCon.dsIntegracao
+            ReadOnly = True
+            TabOrder = 9
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'IDENDERECO'
+                Title.Caption = 'C'#243'digo'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'NMCIDADE'
+                Title.Caption = 'Cidade'
+                Width = 200
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'NMBAIRRO'
+                Title.Caption = 'Bairro'
+                Width = 120
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'DSUF'
+                Title.Caption = 'UF'
+                Width = 60
+                Visible = True
+              end>
+          end
+        end
+      end
+    end
+  end
+end

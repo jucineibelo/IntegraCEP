@@ -25,10 +25,6 @@ type
     TabSheet1: TTabSheet;
     Panel2: TPanel;
     lblCadPessoa: TLabel;
-    TabSheet2: TTabSheet;
-    Panel1: TPanel;
-    edtPesquisa: TEdit;
-    btnPesquisa: TBitBtn;
     lblCod: TLabel;
     lblPessoa: TLabel;
     lblCep: TLabel;
@@ -36,7 +32,6 @@ type
     DBTextCod: TDBText;
     lookupPessoa: TDBLookupComboBox;
     TabSheet3: TTabSheet;
-    DBGrid1: TDBGrid;
     Panel3: TPanel;
     lblNome: TLabel;
     lblUF: TLabel;
@@ -53,23 +48,20 @@ type
     edtCepIntegracao: TDBEdit;
     btnPesquisaCep: TBitBtn;
     BitBtn1: TBitBtn;
-    DBNavigator1: TDBNavigator;
-    DBNavigator2: TDBNavigator;
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
     procedure btnNovoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
-    procedure btnPesquisaClick(Sender: TObject);
-    procedure edtPesquisaKeyPress(Sender: TObject; var Key: Char);
     procedure PageControl1Change(Sender: TObject);
     procedure btnPesquisaCepClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure edtCepKeyPress(Sender: TObject; var Key: Char);
   private
 
-    procedure pesquisarGrid;
     procedure desativarBotoes;
     procedure desativarBotoesAll;
     procedure ativarBotoes;
@@ -107,10 +99,7 @@ begin // Salvar tabela integração
     DmCon.QryIntegracao.Post;
     DmCon.QryIntegracao.Refresh;
     MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOK], 0);
-    PageControl1.TabIndex := 1;
-    ativarBotoes;
-    btnSalvar.Visible := False;
-    PageControl1.TabIndex := 2;
+    DmCon.QryIntegracao.Append;
   except
     on E: EDatabaseError do
     begin
@@ -195,11 +184,6 @@ begin // Pesquisa na API
   end;
 end;
 
-procedure TfrmEndereco.btnPesquisaClick(Sender: TObject);
-begin
-  pesquisarGrid;
-end;
-
 procedure TfrmEndereco.btnSalvarClick(Sender: TObject);
 begin
   try
@@ -209,6 +193,9 @@ begin
     PageControl1.TabIndex := 1;
     ativarBotoes;
     btnSalvar.Visible := False;
+    DmCon.QryIntegracao.last;
+    DmCon.QryIntegracao.append;
+
   except
     on E: EDatabaseError do
     begin
@@ -248,12 +235,6 @@ begin
     Key := #0; //
 end;
 
-procedure TfrmEndereco.edtPesquisaKeyPress(Sender: TObject; var Key: Char);
-begin
-  if Key = #13 then
-    pesquisarGrid;
-end;
-
 procedure TfrmEndereco.FormCreate(Sender: TObject);
 begin
   if not DmCon.QryEndereco.Active then
@@ -282,12 +263,5 @@ begin
 
 end;
 
-procedure TfrmEndereco.pesquisarGrid;
-begin
-  DmCon.QryPessoas.Filtered := False;
-  DmCon.QryPessoas.IndexFieldNames := DBGrid1.SelectedField.FieldName;
-  DmCon.QryPessoas.FindNearest([edtPesquisa.Text]);
-
-end;
 
 end.
