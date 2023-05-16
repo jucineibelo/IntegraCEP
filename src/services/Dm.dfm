@@ -12,6 +12,7 @@ object DmCon: TDmCon
       'Password=masterkey'
       'Port=3050'
       'DriverID=FB')
+    Connected = True
     LoginPrompt = False
     Left = 40
     Top = 32

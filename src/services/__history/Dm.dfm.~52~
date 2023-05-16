@@ -24,10 +24,10 @@ object DmCon: TDmCon
     Left = 40
     Top = 96
     object QryPessoasIDPESSOA: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'IDPESSOA'
       Origin = 'IDPESSOA'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object QryPessoasFLNATUREZA: TIntegerField
       FieldName = 'FLNATUREZA'
@@ -110,10 +110,10 @@ object DmCon: TDmCon
     Left = 40
     Top = 240
     object QryIntegracaoIDENDERECO: TIntegerField
-      AutoGenerateValue = arAutoInc
       FieldName = 'IDENDERECO'
       Origin = 'IDENDERECO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
     object QryIntegracaoDSUF: TStringField
       FieldName = 'DSUF'

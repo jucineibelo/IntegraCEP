@@ -24,10 +24,10 @@ object DmCon: TDmCon
     Left = 40
     Top = 96
     object QryPessoasIDPESSOA: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'IDPESSOA'
       Origin = 'IDPESSOA'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object QryPessoasFLNATUREZA: TIntegerField
       FieldName = 'FLNATUREZA'
@@ -74,10 +74,10 @@ object DmCon: TDmCon
     Left = 40
     Top = 168
     object QryEnderecoIDENDERECO: TIntegerField
+      AutoGenerateValue = arAutoInc
       FieldName = 'IDENDERECO'
       Origin = 'IDENDERECO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-      Required = True
     end
     object QryEnderecoIDPESSOA: TIntegerField
       FieldName = 'IDPESSOA'
@@ -106,14 +106,21 @@ object DmCon: TDmCon
   object QryIntegracao: TFDQuery
     Connection = FDConexao
     SQL.Strings = (
-      'select * from endereco_integracao')
+      'select * from endereco_integracao ei where ei.idendereco = :id')
     Left = 40
     Top = 240
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
     object QryIntegracaoIDENDERECO: TIntegerField
-      AutoGenerateValue = arAutoInc
       FieldName = 'IDENDERECO'
       Origin = 'IDENDERECO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
     end
     object QryIntegracaoDSUF: TStringField
       FieldName = 'DSUF'

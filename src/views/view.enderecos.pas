@@ -68,6 +68,7 @@ type
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn4Click(Sender: TObject);
+    procedure TabSheet3Show(Sender: TObject);
   private
 
     procedure desativarBotoes;
@@ -267,8 +268,6 @@ begin
   if not DmCon.QryPessoas.Active then
     DmCon.QryPessoas.Active := True;
 
-  if not DmCon.QryIntegracao.Active then
-    DmCon.QryIntegracao.Active := True;
   PageControl1.TabIndex := 0;
   btnSalvar.Visible := False;
 end;
@@ -293,5 +292,11 @@ begin
 
 end;
 
+
+procedure TfrmEndereco.TabSheet3Show(Sender: TObject);
+begin
+    if not DmCon.QryIntegracao.Active then
+    DmCon.QryIntegracao.Active := True;
+end;
 
 end.

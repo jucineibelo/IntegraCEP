@@ -291,6 +291,7 @@ object frmEndereco: TfrmEndereco
       object TabSheet3: TTabSheet
         Caption = 'CEP'
         ImageIndex = 2
+        OnShow = TabSheet3Show
         object Panel3: TPanel
           Left = 0
           Top = 0
