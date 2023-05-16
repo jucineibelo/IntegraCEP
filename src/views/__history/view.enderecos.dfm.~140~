@@ -291,6 +291,7 @@ object frmEndereco: TfrmEndereco
       object TabSheet3: TTabSheet
         Caption = 'CEP'
         ImageIndex = 2
+        OnShow = TabSheet3Show
         object Panel3: TPanel
           Left = 0
           Top = 0
@@ -425,7 +426,7 @@ object frmEndereco: TfrmEndereco
           end
           object BitBtn1: TBitBtn
             Left = 455
-            Top = 209
+            Top = 204
             Width = 91
             Height = 25
             Caption = 'Salvar'
@@ -475,36 +476,40 @@ object frmEndereco: TfrmEndereco
               end>
           end
           object Novo: TBitBtn
-            Left = 104
-            Top = 209
+            Left = 99
+            Top = 204
             Width = 91
             Height = 25
             Caption = 'Novo'
             TabOrder = 10
+            OnClick = NovoClick
           end
           object BitBtn2: TBitBtn
             Left = 216
-            Top = 209
+            Top = 204
             Width = 91
             Height = 25
             Caption = 'Editar'
             TabOrder = 11
+            OnClick = BitBtn2Click
           end
           object BitBtn3: TBitBtn
             Left = 337
-            Top = 209
+            Top = 204
             Width = 91
             Height = 25
             Caption = 'Cancelar'
             TabOrder = 12
+            OnClick = BitBtn3Click
           end
           object BitBtn4: TBitBtn
             Left = 572
-            Top = 209
+            Top = 204
             Width = 91
             Height = 25
             Caption = 'Excluir'
             TabOrder = 13
+            OnClick = BitBtn4Click
           end
         end
       end

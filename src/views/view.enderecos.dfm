@@ -356,7 +356,7 @@ object frmEndereco: TfrmEndereco
             Height = 21
             DataField = 'DSUF'
             DataSource = DmCon.dsIntegracao
-            TabOrder = 6
+            TabOrder = 5
           end
           object edtCidade: TDBEdit
             Left = 407
@@ -404,7 +404,7 @@ object frmEndereco: TfrmEndereco
             KeyField = 'IDENDERECO'
             ListField = 'NMPRIMEIRO'
             ListSource = DmCon.dsEndereco
-            TabOrder = 5
+            TabOrder = 6
           end
           object edtCepIntegracao: TDBEdit
             Left = 48
@@ -424,15 +424,6 @@ object frmEndereco: TfrmEndereco
             TabOrder = 7
             OnClick = btnPesquisaCepClick
           end
-          object BitBtn1: TBitBtn
-            Left = 455
-            Top = 204
-            Width = 91
-            Height = 25
-            Caption = 'Salvar'
-            TabOrder = 8
-            OnClick = BitBtn1Click
-          end
           object DBGrid2: TDBGrid
             Left = 0
             Top = 240
@@ -440,7 +431,7 @@ object frmEndereco: TfrmEndereco
             Height = 135
             DataSource = DmCon.dsIntegracao
             ReadOnly = True
-            TabOrder = 9
+            TabOrder = 8
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
             TitleFont.Height = -11
@@ -475,41 +466,50 @@ object frmEndereco: TfrmEndereco
                 Visible = True
               end>
           end
-          object Novo: TBitBtn
-            Left = 99
-            Top = 204
+          object btnNovo2: TBitBtn
+            Left = 115
+            Top = 209
             Width = 91
             Height = 25
             Caption = 'Novo'
-            TabOrder = 10
-            OnClick = NovoClick
+            TabOrder = 9
+            OnClick = btnNovo2Click
           end
-          object BitBtn2: TBitBtn
-            Left = 216
-            Top = 204
+          object btnEditar2: TBitBtn
+            Left = 232
+            Top = 209
             Width = 91
             Height = 25
             Caption = 'Editar'
-            TabOrder = 11
-            OnClick = BitBtn2Click
+            TabOrder = 10
+            OnClick = btnEditar2Click
           end
-          object BitBtn3: TBitBtn
-            Left = 337
-            Top = 204
+          object btnCancelar2: TBitBtn
+            Left = 353
+            Top = 209
             Width = 91
             Height = 25
             Caption = 'Cancelar'
-            TabOrder = 12
-            OnClick = BitBtn3Click
+            TabOrder = 11
+            OnClick = btnCancelar2Click
           end
-          object BitBtn4: TBitBtn
-            Left = 572
-            Top = 204
+          object btnSalvar2: TBitBtn
+            Left = 471
+            Top = 209
+            Width = 91
+            Height = 25
+            Caption = 'Salvar'
+            TabOrder = 12
+            OnClick = btnSalvar2Click
+          end
+          object btnExcluir2: TBitBtn
+            Left = 576
+            Top = 209
             Width = 91
             Height = 25
             Caption = 'Excluir'
             TabOrder = 13
-            OnClick = BitBtn4Click
+            OnClick = btnExcluir2Click
           end
         end
       end

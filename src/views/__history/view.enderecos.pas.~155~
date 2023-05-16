@@ -47,13 +47,13 @@ type
     lookupNomeIntegracao: TDBLookupComboBox;
     edtCepIntegracao: TDBEdit;
     btnPesquisaCep: TBitBtn;
-    BitBtn1: TBitBtn;
     DBGrid1: TDBGrid;
     DBGrid2: TDBGrid;
-    Novo: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;
-    BitBtn4: TBitBtn;
+    btnNovo2: TBitBtn;
+    btnEditar2: TBitBtn;
+    btnCancelar2: TBitBtn;
+    btnSalvar2: TBitBtn;
+    btnExcluir2: TBitBtn;
     procedure btnNovoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -62,16 +62,18 @@ type
     procedure btnExcluirClick(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
     procedure btnPesquisaCepClick(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
+    procedure btnSalvar2Click(Sender: TObject);
     procedure edtCepKeyPress(Sender: TObject; var Key: Char);
-    procedure NovoClick(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
-    procedure BitBtn3Click(Sender: TObject);
-    procedure BitBtn4Click(Sender: TObject);
+    procedure btnNovo2Click(Sender: TObject);
+    procedure btnEditar2Click(Sender: TObject);
+    procedure btnCancelar2Click(Sender: TObject);
+    procedure btnExcluir2Click(Sender: TObject);
+    procedure TabSheet3Show(Sender: TObject);
   private
 
     procedure desativarBotoes;
     procedure desativarBotoesAll;
+    procedure botoesSegundaTela;
     procedure ativarBotoes;
 
   public
@@ -101,7 +103,7 @@ begin
   end;
 end;
 
-procedure TfrmEndereco.BitBtn1Click(Sender: TObject);
+procedure TfrmEndereco.btnSalvar2Click(Sender: TObject);
 begin // Salvar tabela integração
   try
     DmCon.QryIntegracao.Post;
@@ -118,19 +120,19 @@ begin // Salvar tabela integração
   end;
 end;
 
-procedure TfrmEndereco.BitBtn2Click(Sender: TObject);
+procedure TfrmEndereco.btnEditar2Click(Sender: TObject);
 begin
   if DmCon.QryIntegracao.State = dsBrowse then
   DmCon.QryEndereco.Edit;
 end;
 
-procedure TfrmEndereco.BitBtn3Click(Sender: TObject);
+procedure TfrmEndereco.btnCancelar2Click(Sender: TObject);
 begin
     if DmCon.QryIntegracao.State in dsEditModes then
     DmCon.QryIntegracao.Cancel;
 end;
 
-procedure TfrmEndereco.BitBtn4Click(Sender: TObject);
+procedure TfrmEndereco.btnExcluir2Click(Sender: TObject);
   var
   aviso: integer;
 begin
@@ -139,6 +141,17 @@ begin
     'Atenção', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION);
   if aviso <> IDNO then
     DmCon.QryIntegracao.Delete;
+end;
+
+procedure TfrmEndereco.botoesSegundaTela;
+begin
+
+  if PageControl1.TabIndex <> 1 then
+      btnNovo2.Visible := False;
+      btnEditar2.Visible := False;
+      btnCancelar2.Visible := False;
+      btnSalvar2.Visible := False;
+      btnExcluir2.Visible := False;
 end;
 
 procedure TfrmEndereco.btnCancelarClick(Sender: TObject);
@@ -267,13 +280,12 @@ begin
   if not DmCon.QryPessoas.Active then
     DmCon.QryPessoas.Active := True;
 
-  if not DmCon.QryIntegracao.Active then
-    DmCon.QryIntegracao.Active := True;
   PageControl1.TabIndex := 0;
   btnSalvar.Visible := False;
+  botoesSegundaTela;
 end;
 
-procedure TfrmEndereco.NovoClick(Sender: TObject);
+procedure TfrmEndereco.btnNovo2Click(Sender: TObject);
 begin
   DmCon.QryIntegracao.Last;
   DmCon.QryIntegracao.Append;
@@ -287,11 +299,18 @@ begin
     ativarBotoes;
   if PageControl1.TabIndex = 1 then
     desativarBotoesAll;
-  if PageControl1.TabIndex = 2 then
-    ativarBotoes;
   btnSalvar.Visible := False;
+
+  botoesSegundaTela;
 
 end;
 
+
+procedure TfrmEndereco.TabSheet3Show(Sender: TObject);
+begin
+    if not DmCon.QryIntegracao.Active then
+    DmCon.QryIntegracao.Active := True;
+    botoesSegundaTela;
+end;
 
 end.

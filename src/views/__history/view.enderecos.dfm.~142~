@@ -154,6 +154,51 @@ object frmEndereco: TfrmEndereco
         ExplicitTop = 0
         ExplicitHeight = 34
       end
+      object btnNovo2: TBitBtn
+        Left = 115
+        Top = 12
+        Width = 91
+        Height = 25
+        Caption = 'Novo'
+        TabOrder = 0
+        OnClick = btnNovo2Click
+      end
+      object btnEditar2: TBitBtn
+        Left = 232
+        Top = 12
+        Width = 91
+        Height = 25
+        Caption = 'Editar'
+        TabOrder = 1
+        OnClick = btnEditar2Click
+      end
+      object btnCancelar2: TBitBtn
+        Left = 353
+        Top = 12
+        Width = 91
+        Height = 25
+        Caption = 'Cancelar'
+        TabOrder = 2
+        OnClick = btnCancelar2Click
+      end
+      object btnSalvar2: TBitBtn
+        Left = 471
+        Top = 12
+        Width = 91
+        Height = 25
+        Caption = 'Salvar'
+        TabOrder = 3
+        OnClick = btnSalvar2Click
+      end
+      object btnExcluir2: TBitBtn
+        Left = 588
+        Top = 12
+        Width = 91
+        Height = 25
+        Caption = 'Excluir'
+        TabOrder = 4
+        OnClick = btnExcluir2Click
+      end
     end
     object PageControl1: TPageControl
       Left = 0
@@ -291,6 +336,7 @@ object frmEndereco: TfrmEndereco
       object TabSheet3: TTabSheet
         Caption = 'CEP'
         ImageIndex = 2
+        OnShow = TabSheet3Show
         object Panel3: TPanel
           Left = 0
           Top = 0
@@ -355,7 +401,7 @@ object frmEndereco: TfrmEndereco
             Height = 21
             DataField = 'DSUF'
             DataSource = DmCon.dsIntegracao
-            TabOrder = 6
+            TabOrder = 5
           end
           object edtCidade: TDBEdit
             Left = 407
@@ -403,7 +449,7 @@ object frmEndereco: TfrmEndereco
             KeyField = 'IDENDERECO'
             ListField = 'NMPRIMEIRO'
             ListSource = DmCon.dsEndereco
-            TabOrder = 5
+            TabOrder = 6
           end
           object edtCepIntegracao: TDBEdit
             Left = 48
@@ -423,15 +469,6 @@ object frmEndereco: TfrmEndereco
             TabOrder = 7
             OnClick = btnPesquisaCepClick
           end
-          object BitBtn1: TBitBtn
-            Left = 455
-            Top = 209
-            Width = 91
-            Height = 25
-            Caption = 'Salvar'
-            TabOrder = 8
-            OnClick = BitBtn1Click
-          end
           object DBGrid2: TDBGrid
             Left = 0
             Top = 240
@@ -439,7 +476,7 @@ object frmEndereco: TfrmEndereco
             Height = 135
             DataSource = DmCon.dsIntegracao
             ReadOnly = True
-            TabOrder = 9
+            TabOrder = 8
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
             TitleFont.Height = -11
@@ -473,39 +510,6 @@ object frmEndereco: TfrmEndereco
                 Width = 60
                 Visible = True
               end>
-          end
-          object Novo: TBitBtn
-            Left = 104
-            Top = 209
-            Width = 91
-            Height = 25
-            Caption = 'Novo'
-            TabOrder = 10
-            OnClick = NovoClick
-          end
-          object BitBtn2: TBitBtn
-            Left = 216
-            Top = 209
-            Width = 91
-            Height = 25
-            Caption = 'Editar'
-            TabOrder = 11
-          end
-          object BitBtn3: TBitBtn
-            Left = 337
-            Top = 209
-            Width = 91
-            Height = 25
-            Caption = 'Cancelar'
-            TabOrder = 12
-          end
-          object BitBtn4: TBitBtn
-            Left = 572
-            Top = 209
-            Width = 91
-            Height = 25
-            Caption = 'Excluir'
-            TabOrder = 13
           end
         end
       end

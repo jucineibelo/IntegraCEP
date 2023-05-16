@@ -154,13 +154,58 @@ object frmEndereco: TfrmEndereco
         ExplicitTop = 0
         ExplicitHeight = 34
       end
+      object btnNovo2: TBitBtn
+        Left = 115
+        Top = 12
+        Width = 91
+        Height = 25
+        Caption = 'Novo'
+        TabOrder = 0
+        OnClick = btnNovo2Click
+      end
+      object btnEditar2: TBitBtn
+        Left = 232
+        Top = 12
+        Width = 91
+        Height = 25
+        Caption = 'Editar'
+        TabOrder = 1
+        OnClick = btnEditar2Click
+      end
+      object btnCancelar2: TBitBtn
+        Left = 353
+        Top = 12
+        Width = 91
+        Height = 25
+        Caption = 'Cancelar'
+        TabOrder = 2
+        OnClick = btnCancelar2Click
+      end
+      object btnSalvar2: TBitBtn
+        Left = 471
+        Top = 12
+        Width = 91
+        Height = 25
+        Caption = 'Salvar'
+        TabOrder = 3
+        OnClick = btnSalvar2Click
+      end
+      object btnExcluir2: TBitBtn
+        Left = 588
+        Top = 12
+        Width = 91
+        Height = 25
+        Caption = 'Excluir'
+        TabOrder = 4
+        OnClick = btnExcluir2Click
+      end
     end
     object PageControl1: TPageControl
       Left = 0
       Top = 0
       Width = 683
       Height = 402
-      ActivePage = TabSheet1
+      ActivePage = TabSheet3
       Align = alClient
       TabOrder = 0
       OnChange = PageControl1Change
@@ -291,6 +336,7 @@ object frmEndereco: TfrmEndereco
       object TabSheet3: TTabSheet
         Caption = 'CEP'
         ImageIndex = 2
+        OnShow = TabSheet3Show
         object Panel3: TPanel
           Left = 0
           Top = 0
@@ -309,15 +355,15 @@ object frmEndereco: TfrmEndereco
             Caption = 'Nome:'
           end
           object lblUF: TLabel
-            Left = 393
-            Top = 180
+            Left = 615
+            Top = 138
             Width = 17
             Height = 13
             Caption = 'UF:'
             FocusControl = edtUF
           end
           object lblCidade: TLabel
-            Left = 393
+            Left = 407
             Top = 12
             Width = 37
             Height = 13
@@ -325,7 +371,7 @@ object frmEndereco: TfrmEndereco
             FocusControl = edtCidade
           end
           object lblBairro: TLabel
-            Left = 393
+            Left = 407
             Top = 54
             Width = 32
             Height = 13
@@ -333,7 +379,7 @@ object frmEndereco: TfrmEndereco
             FocusControl = edtBairro
           end
           object lblLogradouro: TLabel
-            Left = 393
+            Left = 407
             Top = 96
             Width = 59
             Height = 13
@@ -341,7 +387,7 @@ object frmEndereco: TfrmEndereco
             FocusControl = edtLogradouro
           end
           object lblComplemento: TLabel
-            Left = 393
+            Left = 407
             Top = 138
             Width = 69
             Height = 13
@@ -349,16 +395,16 @@ object frmEndereco: TfrmEndereco
             FocusControl = edtComplemento
           end
           object edtUF: TDBEdit
-            Left = 393
-            Top = 195
-            Width = 80
+            Left = 615
+            Top = 153
+            Width = 48
             Height = 21
             DataField = 'DSUF'
             DataSource = DmCon.dsIntegracao
-            TabOrder = 6
+            TabOrder = 5
           end
           object edtCidade: TDBEdit
-            Left = 393
+            Left = 407
             Top = 27
             Width = 200
             Height = 21
@@ -367,7 +413,7 @@ object frmEndereco: TfrmEndereco
             TabOrder = 1
           end
           object edtBairro: TDBEdit
-            Left = 393
+            Left = 407
             Top = 69
             Width = 200
             Height = 21
@@ -376,7 +422,7 @@ object frmEndereco: TfrmEndereco
             TabOrder = 2
           end
           object edtLogradouro: TDBEdit
-            Left = 393
+            Left = 407
             Top = 111
             Width = 256
             Height = 21
@@ -385,9 +431,9 @@ object frmEndereco: TfrmEndereco
             TabOrder = 3
           end
           object edtComplemento: TDBEdit
-            Left = 393
+            Left = 407
             Top = 153
-            Width = 256
+            Width = 184
             Height = 21
             DataField = 'DSCOMPLEMENTO'
             DataSource = DmCon.dsIntegracao
@@ -403,7 +449,7 @@ object frmEndereco: TfrmEndereco
             KeyField = 'IDENDERECO'
             ListField = 'NMPRIMEIRO'
             ListSource = DmCon.dsEndereco
-            TabOrder = 5
+            TabOrder = 6
           end
           object edtCepIntegracao: TDBEdit
             Left = 48
@@ -423,15 +469,6 @@ object frmEndereco: TfrmEndereco
             TabOrder = 7
             OnClick = btnPesquisaCepClick
           end
-          object BitBtn1: TBitBtn
-            Left = 516
-            Top = 191
-            Width = 122
-            Height = 25
-            Caption = 'Salvar'
-            TabOrder = 8
-            OnClick = BitBtn1Click
-          end
           object DBGrid2: TDBGrid
             Left = 0
             Top = 240
@@ -439,7 +476,7 @@ object frmEndereco: TfrmEndereco
             Height = 135
             DataSource = DmCon.dsIntegracao
             ReadOnly = True
-            TabOrder = 9
+            TabOrder = 8
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
             TitleFont.Height = -11
