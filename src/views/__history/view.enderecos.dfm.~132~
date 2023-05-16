@@ -160,7 +160,7 @@ object frmEndereco: TfrmEndereco
       Top = 0
       Width = 683
       Height = 402
-      ActivePage = TabSheet1
+      ActivePage = TabSheet3
       Align = alClient
       TabOrder = 0
       OnChange = PageControl1Change
@@ -176,8 +176,6 @@ object frmEndereco: TfrmEndereco
           Color = 16770250
           ParentBackground = False
           TabOrder = 0
-          ExplicitLeft = 32
-          ExplicitTop = 1
           object lblCadPessoa: TLabel
             Left = 230
             Top = 29
@@ -258,6 +256,7 @@ object frmEndereco: TfrmEndereco
             Width = 675
             Height = 183
             DataSource = DmCon.dsEndereco
+            ReadOnly = True
             TabOrder = 2
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
@@ -304,63 +303,63 @@ object frmEndereco: TfrmEndereco
           TabOrder = 0
           object lblNome: TLabel
             Left = 48
-            Top = 48
+            Top = 12
             Width = 31
             Height = 13
             Caption = 'Nome:'
           end
           object lblUF: TLabel
-            Left = 393
-            Top = 220
+            Left = 615
+            Top = 138
             Width = 17
             Height = 13
             Caption = 'UF:'
             FocusControl = edtUF
           end
           object lblCidade: TLabel
-            Left = 393
-            Top = 52
+            Left = 407
+            Top = 12
             Width = 37
             Height = 13
             Caption = 'Cidade:'
             FocusControl = edtCidade
           end
           object lblBairro: TLabel
-            Left = 393
-            Top = 94
+            Left = 407
+            Top = 54
             Width = 32
             Height = 13
             Caption = 'Bairro:'
             FocusControl = edtBairro
           end
           object lblLogradouro: TLabel
-            Left = 393
-            Top = 136
+            Left = 407
+            Top = 96
             Width = 59
             Height = 13
             Caption = 'Logradouro:'
             FocusControl = edtLogradouro
           end
           object lblComplemento: TLabel
-            Left = 393
-            Top = 178
+            Left = 407
+            Top = 138
             Width = 69
             Height = 13
             Caption = 'Complemento:'
             FocusControl = edtComplemento
           end
           object edtUF: TDBEdit
-            Left = 393
-            Top = 235
-            Width = 80
+            Left = 615
+            Top = 153
+            Width = 48
             Height = 21
             DataField = 'DSUF'
             DataSource = DmCon.dsIntegracao
             TabOrder = 6
           end
           object edtCidade: TDBEdit
-            Left = 393
-            Top = 67
+            Left = 407
+            Top = 27
             Width = 200
             Height = 21
             DataField = 'NMCIDADE'
@@ -368,8 +367,8 @@ object frmEndereco: TfrmEndereco
             TabOrder = 1
           end
           object edtBairro: TDBEdit
-            Left = 393
-            Top = 109
+            Left = 407
+            Top = 69
             Width = 200
             Height = 21
             DataField = 'NMBAIRRO'
@@ -377,8 +376,8 @@ object frmEndereco: TfrmEndereco
             TabOrder = 2
           end
           object edtLogradouro: TDBEdit
-            Left = 393
-            Top = 151
+            Left = 407
+            Top = 111
             Width = 256
             Height = 21
             DataField = 'NMLOGRADOURO'
@@ -386,9 +385,9 @@ object frmEndereco: TfrmEndereco
             TabOrder = 3
           end
           object edtComplemento: TDBEdit
-            Left = 393
-            Top = 193
-            Width = 256
+            Left = 407
+            Top = 153
+            Width = 184
             Height = 21
             DataField = 'DSCOMPLEMENTO'
             DataSource = DmCon.dsIntegracao
@@ -396,7 +395,7 @@ object frmEndereco: TfrmEndereco
           end
           object lookupNomeIntegracao: TDBLookupComboBox
             Left = 48
-            Top = 67
+            Top = 27
             Width = 219
             Height = 21
             DataField = 'IDENDERECO'
@@ -408,7 +407,7 @@ object frmEndereco: TfrmEndereco
           end
           object edtCepIntegracao: TDBEdit
             Left = 48
-            Top = 109
+            Top = 69
             Width = 113
             Height = 21
             DataField = 'DSCEP'
@@ -417,7 +416,7 @@ object frmEndereco: TfrmEndereco
           end
           object btnPesquisaCep: TBitBtn
             Left = 176
-            Top = 107
+            Top = 67
             Width = 91
             Height = 25
             Caption = 'Pesquisar'
@@ -425,13 +424,88 @@ object frmEndereco: TfrmEndereco
             OnClick = btnPesquisaCepClick
           end
           object BitBtn1: TBitBtn
-            Left = 393
-            Top = 262
-            Width = 136
+            Left = 455
+            Top = 209
+            Width = 91
             Height = 25
             Caption = 'Salvar'
             TabOrder = 8
             OnClick = BitBtn1Click
+          end
+          object DBGrid2: TDBGrid
+            Left = 0
+            Top = 240
+            Width = 673
+            Height = 135
+            DataSource = DmCon.dsIntegracao
+            ReadOnly = True
+            TabOrder = 9
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'IDENDERECO'
+                Title.Caption = 'C'#243'digo'
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'NMCIDADE'
+                Title.Caption = 'Cidade'
+                Width = 200
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'NMBAIRRO'
+                Title.Caption = 'Bairro'
+                Width = 120
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'DSUF'
+                Title.Caption = 'UF'
+                Width = 60
+                Visible = True
+              end>
+          end
+          object Novo: TBitBtn
+            Left = 104
+            Top = 209
+            Width = 91
+            Height = 25
+            Caption = 'Novo'
+            TabOrder = 10
+            OnClick = NovoClick
+          end
+          object BitBtn2: TBitBtn
+            Left = 216
+            Top = 209
+            Width = 91
+            Height = 25
+            Caption = 'Editar'
+            TabOrder = 11
+          end
+          object BitBtn3: TBitBtn
+            Left = 337
+            Top = 209
+            Width = 91
+            Height = 25
+            Caption = 'Cancelar'
+            TabOrder = 12
+          end
+          object BitBtn4: TBitBtn
+            Left = 572
+            Top = 209
+            Width = 91
+            Height = 25
+            Caption = 'Excluir'
+            TabOrder = 13
           end
         end
       end

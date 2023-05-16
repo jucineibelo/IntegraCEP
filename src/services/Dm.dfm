@@ -6,8 +6,8 @@ object DmCon: TDmCon
   object FDConexao: TFDConnection
     Params.Strings = (
       
-        'Database=C:\Users\User-J\Desktop\Projetos\Projetos Delphi\Integr' +
-        'aCEP\Banco de Dados\DADOS.FDB'
+        'Database=C:\Users\Juci\Desktop\projeto\IntegraCEP\Banco de Dados' +
+        '\DADOS.FDB'
       'User_Name=sysdba'
       'Password=masterkey'
       'Port=3050'

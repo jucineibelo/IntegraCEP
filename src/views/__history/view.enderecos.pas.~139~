@@ -48,8 +48,12 @@ type
     edtCepIntegracao: TDBEdit;
     btnPesquisaCep: TBitBtn;
     BitBtn1: TBitBtn;
-    DBNavigator1: TDBNavigator;
-    DBNavigator2: TDBNavigator;
+    DBGrid1: TDBGrid;
+    DBGrid2: TDBGrid;
+    Novo: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
     procedure btnNovoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -60,6 +64,8 @@ type
     procedure btnPesquisaCepClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure edtCepKeyPress(Sender: TObject; var Key: Char);
+    procedure NovoClick(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
   private
 
     procedure desativarBotoes;
@@ -99,10 +105,7 @@ begin // Salvar tabela integração
     DmCon.QryIntegracao.Post;
     DmCon.QryIntegracao.Refresh;
     MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOK], 0);
-    PageControl1.TabIndex := 1;
-    ativarBotoes;
-    btnSalvar.Visible := False;
-    PageControl1.TabIndex := 2;
+    DmCon.QryIntegracao.Append;
   except
     on E: EDatabaseError do
     begin
@@ -111,6 +114,12 @@ begin // Salvar tabela integração
         'Tente Novamente!');
     end;
   end;
+end;
+
+procedure TfrmEndereco.BitBtn2Click(Sender: TObject);
+begin
+  if DmCon.QryIntegracao.State = dsBrowse then
+  DmCon.QryEndereco.Edit;
 end;
 
 procedure TfrmEndereco.btnCancelarClick(Sender: TObject);
@@ -196,8 +205,6 @@ begin
     PageControl1.TabIndex := 1;
     ativarBotoes;
     btnSalvar.Visible := False;
-    DmCon.QryIntegracao.last;
-    DmCon.QryIntegracao.append;
 
   except
     on E: EDatabaseError do
@@ -250,6 +257,12 @@ begin
     DmCon.QryIntegracao.Active := True;
   PageControl1.TabIndex := 0;
   btnSalvar.Visible := False;
+end;
+
+procedure TfrmEndereco.NovoClick(Sender: TObject);
+begin
+  DmCon.QryIntegracao.Last;
+  DmCon.QryIntegracao.Append;
 end;
 
 procedure TfrmEndereco.PageControl1Change(Sender: TObject);

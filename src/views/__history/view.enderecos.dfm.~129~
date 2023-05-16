@@ -154,15 +154,6 @@ object frmEndereco: TfrmEndereco
         ExplicitTop = 0
         ExplicitHeight = 34
       end
-      object DBNavigator1: TDBNavigator
-        Left = 4
-        Top = 3
-        Width = 672
-        Height = 43
-        DataSource = DmCon.dsIntegracao
-        VisibleButtons = [nbPrior, nbNext, nbInsert, nbDelete, nbEdit, nbPost, nbCancel]
-        TabOrder = 0
-      end
     end
     object PageControl1: TPageControl
       Left = 0
@@ -313,14 +304,14 @@ object frmEndereco: TfrmEndereco
           ParentBackground = False
           TabOrder = 0
           object lblNome: TLabel
-            Left = 16
+            Left = 48
             Top = 12
             Width = 31
             Height = 13
             Caption = 'Nome:'
           end
           object lblUF: TLabel
-            Left = 407
+            Left = 393
             Top = 180
             Width = 17
             Height = 13
@@ -328,7 +319,7 @@ object frmEndereco: TfrmEndereco
             FocusControl = edtUF
           end
           object lblCidade: TLabel
-            Left = 407
+            Left = 393
             Top = 12
             Width = 37
             Height = 13
@@ -336,7 +327,7 @@ object frmEndereco: TfrmEndereco
             FocusControl = edtCidade
           end
           object lblBairro: TLabel
-            Left = 407
+            Left = 393
             Top = 54
             Width = 32
             Height = 13
@@ -344,7 +335,7 @@ object frmEndereco: TfrmEndereco
             FocusControl = edtBairro
           end
           object lblLogradouro: TLabel
-            Left = 407
+            Left = 393
             Top = 96
             Width = 59
             Height = 13
@@ -352,7 +343,7 @@ object frmEndereco: TfrmEndereco
             FocusControl = edtLogradouro
           end
           object lblComplemento: TLabel
-            Left = 407
+            Left = 393
             Top = 138
             Width = 69
             Height = 13
@@ -360,7 +351,7 @@ object frmEndereco: TfrmEndereco
             FocusControl = edtComplemento
           end
           object edtUF: TDBEdit
-            Left = 407
+            Left = 393
             Top = 195
             Width = 80
             Height = 21
@@ -369,7 +360,7 @@ object frmEndereco: TfrmEndereco
             TabOrder = 6
           end
           object edtCidade: TDBEdit
-            Left = 407
+            Left = 393
             Top = 27
             Width = 200
             Height = 21
@@ -378,7 +369,7 @@ object frmEndereco: TfrmEndereco
             TabOrder = 1
           end
           object edtBairro: TDBEdit
-            Left = 407
+            Left = 393
             Top = 69
             Width = 200
             Height = 21
@@ -387,7 +378,7 @@ object frmEndereco: TfrmEndereco
             TabOrder = 2
           end
           object edtLogradouro: TDBEdit
-            Left = 407
+            Left = 393
             Top = 111
             Width = 256
             Height = 21
@@ -396,7 +387,7 @@ object frmEndereco: TfrmEndereco
             TabOrder = 3
           end
           object edtComplemento: TDBEdit
-            Left = 407
+            Left = 393
             Top = 153
             Width = 256
             Height = 21
@@ -405,7 +396,7 @@ object frmEndereco: TfrmEndereco
             TabOrder = 4
           end
           object lookupNomeIntegracao: TDBLookupComboBox
-            Left = 16
+            Left = 48
             Top = 27
             Width = 219
             Height = 21
@@ -417,7 +408,7 @@ object frmEndereco: TfrmEndereco
             TabOrder = 5
           end
           object edtCepIntegracao: TDBEdit
-            Left = 16
+            Left = 48
             Top = 69
             Width = 113
             Height = 21
@@ -426,7 +417,7 @@ object frmEndereco: TfrmEndereco
             TabOrder = 0
           end
           object btnPesquisaCep: TBitBtn
-            Left = 144
+            Left = 176
             Top = 67
             Width = 91
             Height = 25
@@ -437,7 +428,7 @@ object frmEndereco: TfrmEndereco
           object BitBtn1: TBitBtn
             Left = 516
             Top = 191
-            Width = 136
+            Width = 122
             Height = 25
             Caption = 'Salvar'
             TabOrder = 8

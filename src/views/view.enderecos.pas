@@ -50,6 +50,10 @@ type
     BitBtn1: TBitBtn;
     DBGrid1: TDBGrid;
     DBGrid2: TDBGrid;
+    Novo: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
     procedure btnNovoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -60,6 +64,10 @@ type
     procedure btnPesquisaCepClick(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
     procedure edtCepKeyPress(Sender: TObject; var Key: Char);
+    procedure NovoClick(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
   private
 
     procedure desativarBotoes;
@@ -110,16 +118,34 @@ begin // Salvar tabela integração
   end;
 end;
 
+procedure TfrmEndereco.BitBtn2Click(Sender: TObject);
+begin
+  if DmCon.QryIntegracao.State = dsBrowse then
+  DmCon.QryEndereco.Edit;
+end;
+
+procedure TfrmEndereco.BitBtn3Click(Sender: TObject);
+begin
+    if DmCon.QryIntegracao.State in dsEditModes then
+    DmCon.QryIntegracao.Cancel;
+end;
+
+procedure TfrmEndereco.BitBtn4Click(Sender: TObject);
+  var
+  aviso: integer;
+begin
+  Application.Title := 'Atenção!';
+  aviso := Application.MessageBox('Deseja mesmo excluir o registro? ',
+    'Atenção', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION);
+  if aviso <> IDNO then
+    DmCon.QryIntegracao.Delete;
+end;
+
 procedure TfrmEndereco.btnCancelarClick(Sender: TObject);
 begin
   ativarBotoes;
   if DmCon.QryEndereco.State in dsEditModes then
     DmCon.QryEndereco.Cancel;
-
-  if DmCon.QryIntegracao.State in dsEditModes then
-    DmCon.QryIntegracao.Cancel;
-
-  PageControl1.TabIndex := 2;
   btnSalvar.Visible := False;
 end;
 
@@ -193,8 +219,6 @@ begin
     PageControl1.TabIndex := 1;
     ativarBotoes;
     btnSalvar.Visible := False;
-    DmCon.QryIntegracao.last;
-    DmCon.QryIntegracao.append;
 
   except
     on E: EDatabaseError do
@@ -247,6 +271,12 @@ begin
     DmCon.QryIntegracao.Active := True;
   PageControl1.TabIndex := 0;
   btnSalvar.Visible := False;
+end;
+
+procedure TfrmEndereco.NovoClick(Sender: TObject);
+begin
+  DmCon.QryIntegracao.Last;
+  DmCon.QryIntegracao.Append;
 end;
 
 procedure TfrmEndereco.PageControl1Change(Sender: TObject);
