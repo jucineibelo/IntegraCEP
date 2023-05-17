@@ -6,12 +6,13 @@ object DmCon: TDmCon
   object FDConexao: TFDConnection
     Params.Strings = (
       
-        'Database=C:\Users\User-J\Desktop\Projetos Delphi\IntegraCEP\Banc' +
-        'o de Dados\DADOS.FDB'
+        'Database=C:\Users\Juci\Desktop\projeto\IntegraCEP\Banco de Dados' +
+        '\DADOS.FDB'
       'User_Name=sysdba'
       'Password=masterkey'
       'Port=3050'
       'DriverID=FB')
+    Connected = True
     LoginPrompt = False
     Left = 40
     Top = 32
@@ -105,7 +106,7 @@ object DmCon: TDmCon
   object QryIntegracao: TFDQuery
     Connection = FDConexao
     SQL.Strings = (
-      'select * from endereco_integracao')
+      'select * from endereco_integracao order by idendereco')
     Left = 40
     Top = 240
     object QryIntegracaoIDENDERECO: TIntegerField
