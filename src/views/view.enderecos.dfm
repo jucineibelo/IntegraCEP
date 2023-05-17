@@ -161,7 +161,7 @@ object frmEndereco: TfrmEndereco
       Top = 0
       Width = 683
       Height = 402
-      ActivePage = TabSheet3
+      ActivePage = TabSheet1
       Align = alClient
       TabOrder = 0
       OnChange = PageControl1Change
@@ -213,7 +213,7 @@ object frmEndereco: TfrmEndereco
             FocusControl = edtCep
           end
           object DBTextCod: TDBText
-            Left = 117
+            Left = 123
             Top = 114
             Width = 37
             Height = 17
@@ -351,12 +351,18 @@ object frmEndereco: TfrmEndereco
             FocusControl = edtComplemento
           end
           object DBText1: TDBText
-            Left = 40
+            Left = 52
             Top = 30
-            Width = 50
+            Width = 33
             Height = 17
             DataField = 'IDENDERECO'
             DataSource = DmCon.dsIntegracao
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = [fsBold]
+            ParentFont = False
           end
           object edtUF: TDBEdit
             Left = 615
