@@ -97,7 +97,6 @@ procedure TfrmPessoa.btnExcluirClick(Sender: TObject);
 var
   aviso: integer;
 begin
-
   Application.Title := 'Atenção!';
   aviso := Application.MessageBox('Deseja mesmo excluir o registro? ',
     'Atenção', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION);
@@ -129,11 +128,19 @@ end;
 
 procedure TfrmPessoa.btnSalvarClick(Sender: TObject);
 begin
-  DmCon.QryPessoas.Post;
-  MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOK], 0);
-  PageControl1.TabIndex := 1;
-  ativarBotoes;
-  btnSalvar.Visible := False;
+  try
+    DmCon.QryPessoas.Post;
+    MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOK], 0);
+    PageControl1.TabIndex := 1;
+    ativarBotoes;
+    btnSalvar.Visible := False;
+except
+    on E: EDatabaseError do
+      begin
+        Application.Title := 'Atenção!';
+        ShowMessage('Algum campo obrigatório não foi preenchido.'+#13+'Tente Novamente!');
+      end;
+    end;
 end;
 
 procedure TfrmPessoa.desativarBotoes;

@@ -73,7 +73,6 @@ type
 
     procedure desativarBotoes;
     procedure desativarBotoesAll;
-    procedure botoesSegundaTela;
     procedure ativarBotoes;
 
   public
@@ -123,17 +122,17 @@ end;
 procedure TfrmEndereco.btnEditar2Click(Sender: TObject);
 begin
   if DmCon.QryIntegracao.State = dsBrowse then
-  DmCon.QryEndereco.Edit;
+    DmCon.QryEndereco.Edit;
 end;
 
 procedure TfrmEndereco.btnCancelar2Click(Sender: TObject);
 begin
-    if DmCon.QryIntegracao.State in dsEditModes then
+  if DmCon.QryIntegracao.State in dsEditModes then
     DmCon.QryIntegracao.Cancel;
 end;
 
 procedure TfrmEndereco.btnExcluir2Click(Sender: TObject);
-  var
+var
   aviso: integer;
 begin
   Application.Title := 'Atenção!';
@@ -141,17 +140,6 @@ begin
     'Atenção', MB_YESNO + MB_DEFBUTTON2 + MB_ICONQUESTION);
   if aviso <> IDNO then
     DmCon.QryIntegracao.Delete;
-end;
-
-procedure TfrmEndereco.botoesSegundaTela;
-begin
-
-  if PageControl1.TabIndex <> 0 then
-      btnNovo2.Visible := False;
-      btnEditar2.Visible := False;
-      btnCancelar2.Visible := False;
-      btnSalvar2.Visible := False;
-      btnExcluir2.Visible := False;
 end;
 
 procedure TfrmEndereco.btnCancelarClick(Sender: TObject);
@@ -205,22 +193,23 @@ begin // Pesquisa na API
   end;
 
   if Length(edtCepIntegracao.Text) = 8 then
-  try
-    DmIntegra.RESTClient1.BaseURL := 'http://viacep.com.br/ws/' + edtCepIntegracao.Text + '/json/';
-    DmIntegra.RESTRequest1.Execute;
-    // ShowMessage(DmIntegra.RESTResponse1.Content);   <- teste para ver se retornava
-    edtCidade.Text := DmIntegra.FDMemTable1.FieldByName('localidade').AsString;
-    edtBairro.Text := DmIntegra.FDMemTable1.FieldByName('bairro').AsString;
-    edtLogradouro.Text := DmIntegra.FDMemTable1.FieldByName('logradouro').AsString;
-    edtComplemento.Text := DmIntegra.FDMemTable1.FieldByName('complemento').AsString;
-    edtUF.Text := DmIntegra.FDMemTable1.FieldByName('uf').AsString;
-  except
-    on E: EDatabaseError do
-    begin
-      Application.Title := 'Atenção!';
-      ShowMessage('CEP não encontrado!');
+    try
+      DmIntegra.RESTClient1.BaseURL := 'http://viacep.com.br/ws/' +
+        edtCepIntegracao.Text + '/json/';
+      DmIntegra.RESTRequest1.Execute;
+      // ShowMessage(DmIntegra.RESTResponse1.Content);   <- teste para ver se retornava
+      edtCidade.Text := DmIntegra.FDMemTable1.FieldByName('localidade').AsString;
+      edtBairro.Text := DmIntegra.FDMemTable1.FieldByName('bairro').AsString;
+      edtLogradouro.Text := DmIntegra.FDMemTable1.FieldByName('logradouro').AsString;
+      edtComplemento.Text := DmIntegra.FDMemTable1.FieldByName('complemento').AsString;
+      edtUF.Text := DmIntegra.FDMemTable1.FieldByName('uf').AsString;
+    except
+      on E: EDatabaseError do
+      begin
+        Application.Title := 'Atenção!';
+        ShowMessage('CEP não encontrado!');
+      end;
     end;
-  end;
 end;
 
 procedure TfrmEndereco.btnSalvarClick(Sender: TObject);
@@ -237,8 +226,7 @@ begin
     on E: EDatabaseError do
     begin
       Application.Title := 'Atenção!';
-      ShowMessage('Algum campo obrigatório não foi preenchido.' + #13 +
-        'Tente Novamente!');
+      ShowMessage('Algum campo obrigatório não foi preenchido.' + #13 + 'Tente Novamente!');
     end;
   end;
   desativarBotoesAll;
@@ -268,7 +256,7 @@ end;
 
 procedure TfrmEndereco.edtCepKeyPress(Sender: TObject; var Key: Char);
 begin
-  if not (Key in ['0'..'9', #8, #13, #27]) then
+  if not(Key in ['0' .. '9', #8, #13, #27]) then
     Key := #0; //
 end;
 
@@ -299,15 +287,11 @@ begin
   if PageControl1.TabIndex = 1 then
     desativarBotoesAll;
   btnSalvar.Visible := False;
-
-  botoesSegundaTela;
-
 end;
-
 
 procedure TfrmEndereco.TabSheet3Show(Sender: TObject);
 begin
-    if not DmCon.QryIntegracao.Active then
+  if not DmCon.QryIntegracao.Active then
     DmCon.QryIntegracao.Active := True;
 end;
 

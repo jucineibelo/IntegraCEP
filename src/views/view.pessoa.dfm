@@ -14,6 +14,7 @@ object frmPessoa: TfrmPessoa
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -166,6 +167,10 @@ object frmPessoa: TfrmPessoa
       OnChange = PageControl1Change
       object TabSheet1: TTabSheet
         Caption = 'Cadastro'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel2: TPanel
           Left = 0
           Top = 0

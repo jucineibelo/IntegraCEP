@@ -54,6 +54,7 @@ type
     btnCancelar2: TBitBtn;
     btnSalvar2: TBitBtn;
     btnExcluir2: TBitBtn;
+    DBText1: TDBText;
     procedure btnNovoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -69,6 +70,7 @@ type
     procedure btnCancelar2Click(Sender: TObject);
     procedure btnExcluir2Click(Sender: TObject);
     procedure TabSheet3Show(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
 
     procedure desativarBotoes;
@@ -258,6 +260,15 @@ procedure TfrmEndereco.edtCepKeyPress(Sender: TObject; var Key: Char);
 begin
   if not(Key in ['0' .. '9', #8, #13, #27]) then
     Key := #0; //
+end;
+
+procedure TfrmEndereco.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+    if not DmCon.QryEndereco.Active then
+    DmCon.QryEndereco.Active := False;
+
+  if not DmCon.QryPessoas.Active then
+    DmCon.QryPessoas.Active := False;
 end;
 
 procedure TfrmEndereco.FormCreate(Sender: TObject);

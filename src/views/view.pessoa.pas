@@ -46,6 +46,7 @@ type
     procedure btnPesquisaClick(Sender: TObject);
     procedure edtPesquisaKeyPress(Sender: TObject; var Key: Char);
     procedure PageControl1Change(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
 
   private
     procedure pesquisarGrid;
@@ -157,6 +158,12 @@ procedure TfrmPessoa.edtPesquisaKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
     pesquisarGrid;
+end;
+
+procedure TfrmPessoa.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+    if not DmCon.QryPessoas.Active then
+    DmCon.QryPessoas.Active := False;
 end;
 
 procedure TfrmPessoa.FormCreate(Sender: TObject);

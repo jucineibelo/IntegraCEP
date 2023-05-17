@@ -14,6 +14,7 @@ object frmEndereco: TfrmEndereco
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -303,7 +304,7 @@ object frmEndereco: TfrmEndereco
           ParentBackground = False
           TabOrder = 0
           object lblNome: TLabel
-            Left = 48
+            Left = 96
             Top = 12
             Width = 31
             Height = 13
@@ -348,6 +349,14 @@ object frmEndereco: TfrmEndereco
             Height = 13
             Caption = 'Complemento:'
             FocusControl = edtComplemento
+          end
+          object DBText1: TDBText
+            Left = 40
+            Top = 30
+            Width = 50
+            Height = 17
+            DataField = 'IDENDERECO'
+            DataSource = DmCon.dsIntegracao
           end
           object edtUF: TDBEdit
             Left = 615
@@ -395,9 +404,9 @@ object frmEndereco: TfrmEndereco
             TabOrder = 4
           end
           object lookupNomeIntegracao: TDBLookupComboBox
-            Left = 48
+            Left = 96
             Top = 27
-            Width = 219
+            Width = 171
             Height = 21
             DataField = 'IDENDERECO'
             DataSource = DmCon.dsIntegracao
@@ -407,7 +416,7 @@ object frmEndereco: TfrmEndereco
             TabOrder = 6
           end
           object edtCepIntegracao: TDBEdit
-            Left = 48
+            Left = 40
             Top = 69
             Width = 113
             Height = 21
@@ -426,9 +435,10 @@ object frmEndereco: TfrmEndereco
           end
           object DBGrid2: TDBGrid
             Left = 0
-            Top = 240
-            Width = 673
+            Top = 239
+            Width = 675
             Height = 135
+            Align = alBottom
             DataSource = DmCon.dsIntegracao
             ReadOnly = True
             TabOrder = 8
@@ -467,8 +477,8 @@ object frmEndereco: TfrmEndereco
               end>
           end
           object btnNovo2: TBitBtn
-            Left = 115
-            Top = 209
+            Left = 188
+            Top = 206
             Width = 91
             Height = 25
             Caption = 'Novo'
@@ -476,8 +486,8 @@ object frmEndereco: TfrmEndereco
             OnClick = btnNovo2Click
           end
           object btnEditar2: TBitBtn
-            Left = 232
-            Top = 209
+            Left = 285
+            Top = 206
             Width = 91
             Height = 25
             Caption = 'Editar'
@@ -485,8 +495,8 @@ object frmEndereco: TfrmEndereco
             OnClick = btnEditar2Click
           end
           object btnCancelar2: TBitBtn
-            Left = 353
-            Top = 209
+            Left = 382
+            Top = 206
             Width = 91
             Height = 25
             Caption = 'Cancelar'
@@ -494,8 +504,8 @@ object frmEndereco: TfrmEndereco
             OnClick = btnCancelar2Click
           end
           object btnSalvar2: TBitBtn
-            Left = 471
-            Top = 209
+            Left = 479
+            Top = 206
             Width = 91
             Height = 25
             Caption = 'Salvar'
@@ -504,7 +514,7 @@ object frmEndereco: TfrmEndereco
           end
           object btnExcluir2: TBitBtn
             Left = 576
-            Top = 209
+            Top = 206
             Width = 91
             Height = 25
             Caption = 'Excluir'
