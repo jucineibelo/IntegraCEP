@@ -465,7 +465,7 @@ object frmEndereco: TfrmEndereco
                 Expanded = False
                 FieldName = 'NMBAIRRO'
                 Title.Caption = 'Bairro'
-                Width = 120
+                Width = 150
                 Visible = True
               end
               item

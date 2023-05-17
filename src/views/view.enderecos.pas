@@ -115,8 +115,7 @@ begin // Salvar tabela integração
     on E: EDatabaseError do
     begin
       Application.Title := 'Atenção!';
-      ShowMessage('Algum campo obrigatório não foi preenchido.' + #13 +
-        'Tente Novamente!');
+      ShowMessage('Não foi possivel salvar o registro.');
     end;
   end;
 end;
